@@ -512,11 +512,11 @@ async function submitCheckout(e) {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        orderId:     currentExternalRef,
+        orderId:      currentExternalRef,
         name,
-        email,
-        phone,
-        taxId:       '00000000000',    // CPF não coletado — usa placeholder
+        email,         // vazio se canal for 'whatsapp' → backend gera aleatório
+        phone,         // vazio se canal for 'email'    → backend gera aleatório
+        deliveryMode,  // 'whatsapp' | 'email' | 'ambos' → backend resolve contatos
         amountCents,
         productName,
         productId,
