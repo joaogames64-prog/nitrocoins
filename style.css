@@ -148,24 +148,24 @@ body.cart-open { overflow:hidden; }
 
 /* ── BG EFFECTS ── */
 .bg-grid {
-  pointer-events:none; position:absolute; inset:0;
+  pointer-events:none; position:absolute; inset:0; z-index:0;
   background-image:
     linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
   background-size:40px 40px;
 }
 .bg-dots {
-  pointer-events:none; position:absolute; inset:0;
+  pointer-events:none; position:absolute; inset:0; z-index:0;
   background-image:radial-gradient(rgba(99,102,241,.15) 1.5px,transparent 1.5px);
   background-size:24px 24px;
 }
 .bg-spotlight {
-  pointer-events:none; position:absolute; inset-x:0; top:0; height:200px;
+  pointer-events:none; position:absolute; inset-x:0; top:0; height:200px; z-index:0;
   background:radial-gradient(ellipse at 50% 0%,rgba(99,102,241,.12),transparent 70%);
 }
 .glow-blob {
   pointer-events:none; position:absolute; border-radius:9999px;
-  filter:blur(60px); opacity:.5;
+  filter:blur(60px); opacity:.5; z-index:0;
 }
 .glow-blob--left   { left:-48px; top:30px; width:200px; height:200px; background:rgba(99,102,241,.4); animation:float-slow 8s ease-in-out infinite; }
 .glow-blob--right  { right:-30px; top:60px; width:220px; height:220px; background:rgba(56,189,248,.25); animation:float 6s ease-in-out infinite; }
@@ -187,7 +187,7 @@ body.cart-open { overflow:hidden; }
   position:relative; overflow:hidden;
   background:radial-gradient(ellipse at 50% -20%,rgba(99,102,241,.18) 0%,transparent 60%);
 }
-.hero-inner { position:relative; max-width:1200px; margin:0 auto; padding:12px 16px 16px; }
+.hero-inner { position:relative; z-index:2; max-width:1200px; margin:0 auto; padding:12px 16px 16px; }
 .hero-label {
   margin-bottom:14px; text-align:center;
   font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700;
@@ -198,7 +198,7 @@ body.cart-open { overflow:hidden; }
   border:1px solid var(--border);
   box-shadow:0 16px 48px rgba(99,102,241,.15);
 }
-.carousel-track-wrapper { aspect-ratio:16/9; overflow:hidden; }
+.carousel-track-wrapper { aspect-ratio:16/9; min-height:180px; overflow:hidden; }
 .carousel-track {
   display:flex; width:100%; height:100%;
   transition:transform .5s cubic-bezier(.25,.46,.45,.94);
@@ -235,8 +235,8 @@ body.cart-open { overflow:hidden; }
 .icon-accent { color:var(--accent); flex-shrink:0; }
 
 /* ── CATALOG ── */
-.catalog-section { position:relative; overflow:hidden; }
-.catalog-inner { position:relative; max-width:1200px; margin:0 auto; padding:24px 16px 32px; }
+.catalog-section { position:relative; overflow:hidden; isolation:isolate; }
+.catalog-inner { position:relative; z-index:2; max-width:1200px; margin:0 auto; padding:24px 16px 32px; }
 .section-title {
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(22px,5vw,36px); font-weight:700;
@@ -252,11 +252,12 @@ body.cart-open { overflow:hidden; }
 .catalog-card {
   position:relative; display:flex; flex-direction:column;
   justify-content:flex-end; width:100%;
-  aspect-ratio:16/9;
+  min-height:180px;
   overflow:hidden; border-radius:14px; border:1px solid var(--border);
   text-decoration:none;
   transition:transform .3s,border-color .3s,box-shadow .3s;
   -webkit-tap-highlight-color:transparent;
+  isolation:isolate;
 }
 .catalog-card:active { transform:scale(.98); }
 .catalog-card-bg {
@@ -277,7 +278,7 @@ body.cart-open { overflow:hidden; }
 .catalog-card-content {
   position:relative; z-index:10;
   display:flex; align-items:flex-end; justify-content:space-between;
-  gap:10px; padding:16px;
+  gap:10px; padding:16px; min-height:80px;
 }
 .catalog-card-info { min-width:0; }
 .catalog-card-game { font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--fg2); }
@@ -299,7 +300,7 @@ body.cart-open { overflow:hidden; }
   border-top:1px solid var(--border); border-bottom:1px solid var(--border);
   background:rgba(22,27,34,.5);
 }
-.how-inner { position:relative; max-width:1200px; margin:0 auto; padding:32px 16px 40px; }
+.how-inner { position:relative; z-index:2; max-width:1200px; margin:0 auto; padding:32px 16px 40px; }
 
 .steps-grid { margin-top:20px; display:grid; grid-template-columns:1fr; gap:12px; }
 .step-card {
@@ -335,7 +336,7 @@ body.cart-open { overflow:hidden; }
 
 /* ── REVIEWS ── */
 .reviews-section { position:relative; overflow:hidden; }
-.reviews-inner { position:relative; max-width:1200px; margin:0 auto; padding:40px 16px; }
+.reviews-inner { position:relative; z-index:2; max-width:1200px; margin:0 auto; padding:40px 16px; }
 
 .reviews-grid { margin-top:28px; display:grid; grid-template-columns:1fr; gap:12px; }
 .review-wrap { display:flex; }
@@ -354,7 +355,7 @@ body.cart-open { overflow:hidden; }
 
 /* ── FAQ ── */
 .faq-section { position:relative; overflow:hidden; border-top:1px solid var(--border); background:rgba(22,27,34,.4); }
-.faq-inner   { position:relative; max-width:768px; margin:0 auto; padding:48px 16px; }
+.faq-inner   { position:relative; z-index:2; max-width:768px; margin:0 auto; padding:48px 16px; }
 .text-center { text-align:center; }
 
 .faq-list { margin-top:24px; display:flex; flex-direction:column; gap:10px; }
