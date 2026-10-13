@@ -1,0 +1,9 @@
+{
+  "name": "nitrocoins",
+  "version": "1.0.0",
+  "description": "NitroCoins — Loja de moedas virtuais",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

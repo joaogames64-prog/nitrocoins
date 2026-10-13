@@ -359,17 +359,41 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#0d1117;color:#e6ed
 </style>
 
 <script>
-// ── Cart state ───────────────────────────────────────────────────────────────
+// ── Cart ─────────────────────────────────────────────────────────────────────
 function getCart() { return JSON.parse(localStorage.getItem('nc_cart') || '[]'); }
-function saveCart(c) { localStorage.setItem('nc_cart', JSON.stringify(c)); }
-function formatBRL(n) { return 'R$ ' + n.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+function formatBRL(n) { return 'R$ ' + Number(n).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
 function getTotal() { return getCart().reduce((s,i) => s + i.price * i.quantity, 0); }
 
-let deliveryMode = null;
+// ── UTM Tracking ─────────────────────────────────────────────────────────────
+function getTracking() {
+  try {
+    const stored = JSON.parse(sessionStorage.getItem('nc_tracking') || '{}');
+    const p = new URLSearchParams(window.location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
+      if (p.get(k)) stored[k] = p.get(k);
+    });
+    return stored;
+  } catch(e) { return {}; }
+}
+try {
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('utm_source')) {
+    const t = {};
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => { if(p.get(k)) t[k]=p.get(k); });
+    sessionStorage.setItem('nc_tracking', JSON.stringify(t));
+  }
+} catch(e) {}
 
-// ── Init page ────────────────────────────────────────────────────────────────
+// ── State ─────────────────────────────────────────────────────────────────────
+let currentPaymentId  = null;
+let currentExternalRef = null;
+let pollingInterval   = null;
+let pixTimerInterval  = null;
+let deliveryMode      = null;
+
+// ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  const cart = getCart();
+  const cart  = getCart();
   const badge = document.getElementById('cart-badge');
   const count = cart.reduce((s,i) => s+i.quantity, 0);
   if (badge && count > 0) { badge.textContent = count; badge.style.display = 'inline-flex'; }
@@ -379,113 +403,172 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     document.getElementById('checkout-view').style.display = 'block';
     renderSummary(cart);
-    // Restore saved data
+    // Restore saved form data
     try {
-      const saved = JSON.parse(document.cookie.match(/nc_checkout=([^;]+)/)?.[1] ?? '{}');
-      if (saved.nome) document.getElementById('ck-name').value = saved.nome;
+      const raw   = document.cookie.match(/nc_checkout=([^;]+)/)?.[1] ?? '{}';
+      const saved = JSON.parse(decodeURIComponent(raw));
+      if (saved.nome)     document.getElementById('ck-name').value = saved.nome;
       if (saved.delivery) selectDelivery(saved.delivery, false);
       if (saved.whatsapp) { const p = document.getElementById('ck-phone'); if(p) p.value = saved.whatsapp; }
-      if (saved.email) { const e = document.getElementById('ck-email'); if(e) e.value = saved.email; }
+      if (saved.email)    { const e = document.getElementById('ck-email'); if(e) e.value = saved.email; }
     } catch(e) {}
   }
 });
 
 function renderSummary(cart) {
   const ul = document.getElementById('summary-items');
-  let totalOriginal = 0;
-  ul.innerHTML = cart.map(item => {
-    // estimate original as 5x the promo price (like original ~97% off)
-    totalOriginal += item.price * item.quantity * 5;
-    return `<li class="order-summary-item">
-      <img src="${item.image}" style="width:56px;height:56px;border-radius:10px;object-fit:cover;background:rgba(255,255,255,0.05);flex-shrink:0;" onerror="this.onerror=null;this.src='categories/'+(item.game||'roblox').toLowerCase().replace(/ /g,'-').replace(/[^a-z0-9-]/g,'')+'.webp'" alt=""/>
-      <div style="flex:1;">
-        <p style="font-size:12px;color:#38bdf8;font-weight:500;">${item.game}</p>
-        <p style="font-size:14px;font-weight:600;line-height:1.3;margin-top:2px;">${item.amount}</p>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
-          <span style="font-size:12px;color:#8b949e;">Qty: ${item.quantity}</span>
-          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#e6edf3;">${formatBRL(item.price * item.quantity)}</span>
-        </div>
+  ul.innerHTML = cart.map(item => `<li class="order-summary-item">
+    <img src="${item.image}" style="width:56px;height:56px;border-radius:10px;object-fit:cover;background:rgba(255,255,255,0.05);flex-shrink:0;"
+         onerror="this.onerror=null;this.src='categories/'+(this.dataset.game||'roblox').toLowerCase().replace(/ /g,'-').replace(/[^a-z0-9-]/g,'')+'.webp'"
+         data-game="${item.game||'roblox'}" alt=""/>
+    <div style="flex:1;">
+      <p style="font-size:12px;color:#38bdf8;font-weight:500;">${item.game}</p>
+      <p style="font-size:14px;font-weight:600;line-height:1.3;margin-top:2px;">${item.amount}</p>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+        <span style="font-size:12px;color:#8b949e;">Qty: ${item.quantity}</span>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;">${formatBRL(item.price * item.quantity)}</span>
       </div>
-    </li>`;
-  }).join('');
+    </div>
+  </li>`).join('');
   const total = getTotal();
-  document.getElementById('summary-total').textContent = formatBRL(total);
+  document.getElementById('summary-total').textContent   = formatBRL(total);
   document.getElementById('pix-modal-total').textContent = formatBRL(total);
-  document.getElementById('success-total').textContent = formatBRL(total);
-};
+  document.getElementById('success-total').textContent   = formatBRL(total);
+}
 
-// ── Delivery channel selection ────────────────────────────────────────────────
+// ── Delivery selection ────────────────────────────────────────────────────────
 function selectDelivery(mode, save=true) {
   deliveryMode = mode;
   ['whatsapp','email','ambos'].forEach(m => {
-    const btn = document.getElementById('del-'+m);
-    btn.classList.toggle('active', m === mode);
+    document.getElementById('del-'+m)?.classList.toggle('active', m === mode);
   });
-  const fw = document.getElementById('field-whatsapp');
-  const fe = document.getElementById('field-email');
+  const fw   = document.getElementById('field-whatsapp');
+  const fe   = document.getElementById('field-email');
   const hint = document.getElementById('delivery-hint');
-  fw.style.display = (mode === 'whatsapp' || mode === 'ambos') ? 'block' : 'none';
-  fe.style.display = (mode === 'email' || mode === 'ambos') ? 'block' : 'none';
-  hint.style.display = 'block';
+  if (fw) fw.style.display   = (mode==='whatsapp'||mode==='ambos') ? 'block' : 'none';
+  if (fe) fe.style.display   = (mode==='email'   ||mode==='ambos') ? 'block' : 'none';
+  if (hint) hint.style.display = 'block';
   const phoneInput = document.getElementById('ck-phone');
   const emailInput = document.getElementById('ck-email');
-  if (phoneInput) phoneInput.required = (mode === 'whatsapp' || mode === 'ambos');
-  if (emailInput) emailInput.required = (mode === 'email' || mode === 'ambos');
+  if (phoneInput) phoneInput.required = (mode==='whatsapp'||mode==='ambos');
+  if (emailInput) emailInput.required = (mode==='email'   ||mode==='ambos');
   if (save) saveCookieData();
 }
 
 function maskPhone(v) {
   v = v.replace(/\D/g,'').slice(0,11);
-  if (v.length <= 2) return v.length ? '(' + v : '';
+  if (v.length <= 2) return v.length ? '('+v : '';
   if (v.length <= 7) return `(${v.slice(0,2)}) ${v.slice(2)}`;
   return `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
 }
 
 function saveCookieData() {
   const data = {
-    nome: document.getElementById('ck-name')?.value || '',
+    nome:     document.getElementById('ck-name')?.value  || '',
     delivery: deliveryMode,
     whatsapp: document.getElementById('ck-phone')?.value || '',
-    email: document.getElementById('ck-email')?.value || '',
+    email:    document.getElementById('ck-email')?.value || '',
   };
-  document.cookie = 'nc_checkout=' + JSON.stringify(data) + ';max-age=2592000;path=/';
+  document.cookie = 'nc_checkout=' + encodeURIComponent(JSON.stringify(data)) + ';max-age=2592000;path=/';
 }
 
-// ── Form submit → show Pix modal ─────────────────────────────────────────────
-function submitCheckout(e) {
+// ── Form submit → chama /api/create-pix ──────────────────────────────────────
+async function submitCheckout(e) {
   e.preventDefault();
-  if (!deliveryMode) {
-    showError('Selecione como deseja receber suas moedas.');
-    return;
-  }
+  if (!deliveryMode) { showError('Selecione como deseja receber suas moedas.'); return; }
   hideError();
+
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
   btn.style.opacity = '0.7';
+  btn.textContent = 'Gerando PIX...';
   saveCookieData();
-  // Show Pix modal
+
+  // Abre modal com loading
   const modal = document.getElementById('pix-modal');
   modal.style.display = 'flex';
-  // Generate QR code after short delay (simulating API call)
-  setTimeout(() => generateQR(), 1200);
+  document.getElementById('pix-loading').style.display = 'flex';
+  document.getElementById('pix-ready').style.display   = 'none';
+
+  const cart  = getCart();
+  const total = getTotal();
+  const amountCents = Math.round(total * 100);
+
+  // Gera orderId único
+  currentExternalRef = 'NC-' + Math.random().toString(36).slice(2,8).toUpperCase();
+
+  // Monta nome do produto resumido
+  const productName = cart.map(i => `${i.amount} ${i.game}`).join(' + ');
+  const productId   = cart[0]?.id || 'nitrocoins';
+
+  // Dados do cliente
+  const name     = document.getElementById('ck-name')?.value?.trim()  || '';
+  const email    = document.getElementById('ck-email')?.value?.trim() || '';
+  const phone    = document.getElementById('ck-phone')?.value?.trim() || '';
+  const tracking = getTracking();
+
+  try {
+    const res = await fetch('/api/create-pix', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        orderId:     currentExternalRef,
+        name,
+        email,
+        phone,
+        taxId:       '00000000000',    // CPF não coletado — usa placeholder
+        amountCents,
+        productName,
+        productId,
+        items: cart.map(i => ({
+          name:     `${i.amount} — ${i.game}`,
+          quantity: i.quantity,
+          price:    Math.round(i.price * 100),
+        })),
+        tracking,
+      }),
+    });
+
+    const data = await res.json().catch(() => null);
+
+    if (!res.ok || !data?.pixCode) {
+      throw new Error(data?.error || 'Falha ao gerar o PIX. Tente novamente.');
+    }
+
+    currentPaymentId = data.paymentId;
+    showPixCode(data.pixCode);
+    startPolling();
+
+  } catch (err) {
+    // Fecha modal, mostra erro
+    modal.style.display = 'none';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.textContent = 'Ir para o pagamento';
+    showError(err.message || 'Erro ao conectar com o servidor.');
+  }
 }
 
-function generateQR() {
-  const pixCode = '00020126580014BR.GOV.BCB.PIX0136' + crypto.randomUUID().replace(/-/g,'').slice(0,32) + '5204000053039865802BR5910NitroCoins6009SAO PAULO62070503***63044C5D';
-  document.getElementById('pix-code-text').textContent = pixCode;
+// ── Exibe QR Code + código ────────────────────────────────────────────────────
+function showPixCode(pixCode) {
   document.getElementById('pix-loading').style.display = 'none';
+  document.getElementById('pix-code-text').textContent = pixCode;
   const ready = document.getElementById('pix-ready');
   ready.style.display = 'flex';
 
-  // Generate QR using canvas
+  // Gera QR com biblioteca
   if (typeof QRCode !== 'undefined') {
-    QRCode.toCanvas(document.getElementById('qr-canvas'), pixCode, {width:200, margin:1, color:{dark:'#000000',light:'#ffffff'}}, function(){});
+    QRCode.toCanvas(
+      document.getElementById('qr-canvas'),
+      pixCode,
+      { width: 200, margin: 1, color: { dark: '#000000', light: '#ffffff' } },
+      () => {}
+    );
   }
-
   startPixTimer();
 }
 
-let pixTimerInterval = null;
+// ── Timer do PIX (15 min = 900s) ─────────────────────────────────────────────
 function startPixTimer() {
   let secs = 900;
   clearInterval(pixTimerInterval);
@@ -502,66 +585,89 @@ function startPixTimer() {
   }, 1000);
 }
 
+// ── Polling a cada 5s → /api/check-tx ────────────────────────────────────────
+function startPolling() {
+  clearInterval(pollingInterval);
+  pollingInterval = setInterval(async () => {
+    if (!currentPaymentId) return;
+    try {
+      const res  = await fetch(`/api/check-tx?hash=${encodeURIComponent(currentPaymentId)}&ext=${encodeURIComponent(currentExternalRef)}`);
+      const data = await res.json().catch(() => null);
+      if (data?.status === 'PAID') {
+        clearInterval(pollingInterval);
+        confirmPaid();
+      }
+    } catch(err) {
+      // Silencia erros de rede — tenta de novo no próximo tick
+    }
+  }, 5000);
+}
+
+// ── Copia código PIX ─────────────────────────────────────────────────────────
 function copyPixCode() {
   const code = document.getElementById('pix-code-text').textContent;
-  navigator.clipboard.writeText(code).catch(()=>{});
+  navigator.clipboard.writeText(code).catch(() => {});
   showToast('Código Pix copiado!');
 }
 
-// ── Success (simulate payment confirmed) ──────────────────────────────────────
+// ── Pagamento confirmado ──────────────────────────────────────────────────────
 function confirmPaid() {
   clearInterval(pixTimerInterval);
-  document.getElementById('pix-modal').style.display = 'none';
+  clearInterval(pollingInterval);
+  document.getElementById('pix-modal').style.display   = 'none';
   document.getElementById('checkout-view').style.display = 'none';
   document.getElementById('success-state').style.display = 'flex';
-  // Clear cart
   localStorage.removeItem('nc_cart');
 }
 
-// ── Error display ────────────────────────────────────────────────────────────
+// ── Error helpers ────────────────────────────────────────────────────────────
 function showError(msg) {
   const el = document.getElementById('ck-error');
-  el.textContent = msg;
-  el.style.display = 'block';
+  if (el) { el.textContent = msg; el.style.display = 'block'; }
 }
 function hideError() {
-  document.getElementById('ck-error').style.display = 'none';
+  const el = document.getElementById('ck-error');
+  if (el) el.style.display = 'none';
 }
 
-// ── Cart Drawer (from header button) ─────────────────────────────────────────
+// ── Cart Drawer (botão do header) ────────────────────────────────────────────
 function openCartDrawer() {
-  const cart = getCart();
-  const body = document.getElementById('drawer-body');
+  const cart    = getCart();
+  const body    = document.getElementById('drawer-body');
   const overlay = document.getElementById('cart-overlay');
   document.getElementById('cart-drawer').style.right = '0';
-  overlay.style.display = 'block';
+  if (overlay) overlay.style.display = 'block';
+  if (!body) return;
   if (cart.length === 0) {
-    body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;text-align:center;color:#8b949e;"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"8\" cy=\"21\" r=\"1\"/><circle cx=\"19\" cy=\"21\" r=\"1\"/><path d=\"M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12\"/></svg><p>Carrinho vazio</p><a href=\"index.html#catalogo\" style=\"color:#6366f1;font-size:13px;\">Ver ofertas</a></div>';
+    body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;text-align:center;color:#8b949e;padding:24px;"><p>Carrinho vazio</p><a href="index.html#catalogo" style="color:#6366f1;font-size:13px;">Ver ofertas</a></div>';
   } else {
     body.innerHTML = cart.map(i => `<div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-      <img src="${i.image}" style="width:44px;height:44px;border-radius:8px;object-fit:cover;" onerror="this.onerror=null;this.src='categories/'+(i.game||'roblox').toLowerCase().replace(/ /g,'-')+'.webp'" alt=""/>
-      <div style="flex:1;"><p style="font-size:13px;font-weight:600;">${i.name}</p><p style="font-size:12px;color:#38bdf8;margin-top:2px;">${i.game}</p></div>
+      <img src="${i.image}" style="width:44px;height:44px;border-radius:8px;object-fit:cover;"
+           onerror="this.onerror=null;this.src='categories/'+(this.dataset.game||'roblox').toLowerCase().replace(/ /g,'-')+'.webp'"
+           data-game="${i.game||'roblox'}" alt=""/>
+      <div style="flex:1;"><p style="font-size:13px;font-weight:600;">${i.amount}</p><p style="font-size:12px;color:#38bdf8;">${i.game}</p></div>
       <p style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;">${formatBRL(i.price*i.quantity)}</p>
-    </div>`).join('') + `<div style="margin-top:16px;"><a href="checkout.html" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:14px;background:linear-gradient(135deg,#38bdf8,#6366f1);border-radius:12px;color:#fff;font-weight:700;text-decoration:none;font-size:14px;">Finalizar compra →</a></div>`;
+    </div>`).join('') + `<div style="margin-top:16px;"><a href="checkout.html" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:14px;background:linear-gradient(135deg,#38bdf8,#6366f1);border-radius:12px;color:#fff;font-weight:700;text-decoration:none;font-size:14px;">Ir para o pagamento →</a></div>`;
   }
 }
 function closeCartDrawer() {
   document.getElementById('cart-drawer').style.right = '-100vw';
-  document.getElementById('cart-overlay').style.display = 'none';
+  const overlay = document.getElementById('cart-overlay');
+  if (overlay) overlay.style.display = 'none';
 }
 
-// ── Toast ────────────────────────────────────────────────────────────────────
+// ── Toast ─────────────────────────────────────────────────────────────────────
 function showToast(msg) {
   let t = document.getElementById('nc-toast');
   if (!t) {
     t = document.createElement('div');
     t.id = 'nc-toast';
-    t.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:999;padding:10px 20px;background:#6366f1;color:#fff;border-radius:12px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(99,102,241,0.4);transition:opacity .3s;pointer-events:none;';
+    t.style.cssText = 'position:fixed;top:76px;left:50%;transform:translateX(-50%);z-index:9999;padding:10px 20px;background:#6366f1;color:#fff;border-radius:12px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(99,102,241,0.4);transition:opacity .3s;pointer-events:none;white-space:nowrap;';
     document.body.appendChild(t);
   }
   t.textContent = msg; t.style.opacity = '1';
   clearTimeout(t._to);
-  t._to = setTimeout(() => { t.style.opacity = '0'; }, 2000);
+  t._to = setTimeout(() => { t.style.opacity = '0'; }, 2200);
 }
 </script>
 </body>
