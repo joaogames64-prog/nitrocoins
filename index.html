@@ -55,6 +55,72 @@ body.cart-open{overflow:hidden;}
 .cat-card:hover img{transform:scale(1.05);}
 .cat-card:hover .cat-pill{transform:translateX(4px);}
 </style>
+
+  <!-- LowTrack Pixel -->
+  <script>
+  window.pixelId = "lt_px_dec55cf581b6";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://lowtrack.com.br/pixel.js");
+  document.head.appendChild(a);
+  </script>
+
+  <!-- UTM Persistence: salva UTMs na chegada e repassa para todos os links internos -->
+  <script>
+  (function() {
+    var UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid','gclid','ttclid','src'];
+    var STORE_KEY = 'nc_tracking';
+
+    // 1. Lê UTMs da URL atual e salva no sessionStorage
+    var params = new URLSearchParams(window.location.search);
+    var hasNew = false;
+    UTM_KEYS.forEach(function(k) { if (params.get(k)) hasNew = true; });
+
+    if (hasNew) {
+      // Merge com o que já estava salvo (novos UTMs têm prioridade)
+      var saved = {};
+      try { saved = JSON.parse(sessionStorage.getItem(STORE_KEY) || '{}'); } catch(e) {}
+      UTM_KEYS.forEach(function(k) { if (params.get(k)) saved[k] = params.get(k); });
+      sessionStorage.setItem(STORE_KEY, JSON.stringify(saved));
+    }
+
+    // 2. Expõe função global para ler UTMs salvos (usada pelo checkout.html)
+    window.getTracking = function() {
+      try { return JSON.parse(sessionStorage.getItem(STORE_KEY) || '{}'); } catch(e) { return {}; }
+    };
+
+    // 3. Quando o DOM carregar, repassa UTMs para todos os links internos
+    function appendUtmsToLinks() {
+      var tracking = window.getTracking();
+      var keys = Object.keys(tracking);
+      if (keys.length === 0) return;
+
+      var utmString = keys.map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(tracking[k]);
+      }).join('&');
+
+      document.querySelectorAll('a[href]').forEach(function(link) {
+        var href = link.getAttribute('href');
+        // Só links internos (.html, #, ou sem protocolo)
+        if (!href || href.startsWith('http') || href.startsWith('//') || href.startsWith('mailto') || href.startsWith('tel')) return;
+        if (href.indexOf('?') === -1) {
+          link.setAttribute('href', href + '?' + utmString);
+        } else {
+          // Não duplica UTMs já na URL
+          var hasUtm = UTM_KEYS.some(function(k) { return href.indexOf(k) !== -1; });
+          if (!hasUtm) link.setAttribute('href', href + '&' + utmString);
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', appendUtmsToLinks);
+    } else {
+      appendUtmsToLinks();
+    }
+  })();
+  </script>
 </head>
 <body>
 
