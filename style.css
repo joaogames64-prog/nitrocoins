@@ -577,6 +577,7 @@ body.cart-open { overflow:hidden; }
 
 /* ── REVEAL ── */
 .reveal { opacity:0; transform:translateY(16px); transition:opacity .45s ease,transform .45s ease; }
+.no-js .reveal, .reveal--visible { opacity:1 !important; transform:translateY(0) !important; }
 .reveal--visible { opacity:1; transform:translateY(0); }
 
 /* ── GAME PAGE STYLES (inline in each page too) ── */

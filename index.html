@@ -10,6 +10,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
   
+
+<style>
+@media (min-width:560px) { #catalog-grid { grid-template-columns: repeat(2,1fr) !important; } }
+@media (min-width:900px) { #catalog-grid { grid-template-columns: repeat(3,1fr) !important; } }
+</style>
 </head>
 <body>
 <div class="noise-overlay"></div>
@@ -94,97 +99,140 @@
       <div class="glow-blob glow-blob--catalog-left"></div>
       <div class="catalog-inner">
         <h2 class="section-title font-display">Escolha seu proximo item</h2>
-        <div class="catalog-grid">
-          <div class="catalog-card-wrap reveal" style="transition-delay:0ms">
-            <a class="catalog-card" href="roblox.html">
-              <img alt="Roblox" class="catalog-card-bg" src="https://i.imgur.com/cze4Upt.jpg"/>
-              <span class="catalog-card-overlay"></span>
-              <span class="catalog-card-shimmer"></span>
-              <div class="catalog-card-content">
-                <div class="catalog-card-info">
-                  <p class="catalog-card-game">Roblox</p>
-                  <h3 class="catalog-card-title font-display">Robux</h3>
-                  <p class="catalog-card-price">a partir de <span class="price-gradient">R$ 14,99</span></p>
-                </div>
-                <span class="catalog-card-btn">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
+        <div style="margin-top:20px;display:grid;grid-template-columns:1fr;gap:14px;" id="catalog-grid">
+
+          <a href="roblox.html" style="
+            display:flex;flex-direction:column;justify-content:flex-end;
+            position:relative;overflow:hidden;border-radius:16px;
+            border:1px solid rgba(255,255,255,0.1);
+            min-height:180px;text-decoration:none;
+            background:linear-gradient(160deg,#1a0a2e,#3b1f8c,#0f1940);
+            transition:transform 0.25s,box-shadow 0.25s;
+            -webkit-tap-highlight-color:transparent;
+          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
+             onmouseleave="this.style.transform='';this.style.boxShadow=''">
+            <img src="https://i.imgur.com/cze4Upt.jpg" alt="Roblox" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
+                 onerror="this.style.display='none'"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
+            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
+              <div>
+                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Roblox</p>
+                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">Robux</h3>
+                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 14,99</span></p>
               </div>
-            </a>
-          </div>
-          <div class="catalog-card-wrap reveal" style="transition-delay:90ms">
-            <a class="catalog-card" href="fortnite.html" style="background:linear-gradient(135deg,#0a1628 0%,#0d3060 50%,#041020 100%)">
-              <img alt="Fortnite" class="catalog-card-bg" src="https://i.imgur.com/FH8DYru.jpg" onerror="this.style.display='none'"/>
-              <span class="catalog-card-overlay"></span>
-              <span class="catalog-card-shimmer"></span>
-              <div class="catalog-card-content">
-                <div class="catalog-card-info">
-                  <p class="catalog-card-game">Fortnite</p>
-                  <h3 class="catalog-card-title font-display">V-Bucks</h3>
-                  <p class="catalog-card-price">a partir de <span class="price-gradient">R$ 18,99</span></p>
-                </div>
-                <span class="catalog-card-btn">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
+              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+            </div>
+          </a>
+          <a href="fortnite.html" style="
+            display:flex;flex-direction:column;justify-content:flex-end;
+            position:relative;overflow:hidden;border-radius:16px;
+            border:1px solid rgba(255,255,255,0.1);
+            min-height:180px;text-decoration:none;
+            background:linear-gradient(160deg,#041020,#0d3060,#0a1628);
+            transition:transform 0.25s,box-shadow 0.25s;
+            -webkit-tap-highlight-color:transparent;
+          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
+             onmouseleave="this.style.transform='';this.style.boxShadow=''">
+            <img src="https://i.imgur.com/FH8DYru.jpg" alt="Fortnite" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
+                 onerror="this.style.display='none'"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
+            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
+              <div>
+                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Fortnite</p>
+                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">V-Bucks</h3>
+                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 18,99</span></p>
               </div>
-            </a>
-          </div>
-          <div class="catalog-card-wrap reveal" style="transition-delay:180ms">
-            <a class="catalog-card" href="brawl-stars.html" style="background:linear-gradient(135deg,#2a0a3e 0%,#6b1fa0 50%,#1a0828 100%)">
-              <img alt="Brawl Stars" class="catalog-card-bg" src="https://i.imgur.com/2Kj4Gmr.jpg" onerror="this.style.display='none'"/>
-              <span class="catalog-card-overlay"></span>
-              <span class="catalog-card-shimmer"></span>
-              <div class="catalog-card-content">
-                <div class="catalog-card-info">
-                  <p class="catalog-card-game">Brawl Stars</p>
-                  <h3 class="catalog-card-title font-display">Gemas</h3>
-                  <p class="catalog-card-price">a partir de <span class="price-gradient">R$ 10,99</span></p>
-                </div>
-                <span class="catalog-card-btn">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
+              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+            </div>
+          </a>
+          <a href="brawl-stars.html" style="
+            display:flex;flex-direction:column;justify-content:flex-end;
+            position:relative;overflow:hidden;border-radius:16px;
+            border:1px solid rgba(255,255,255,0.1);
+            min-height:180px;text-decoration:none;
+            background:linear-gradient(160deg,#2a0a3e,#7c3aed,#1a0828);
+            transition:transform 0.25s,box-shadow 0.25s;
+            -webkit-tap-highlight-color:transparent;
+          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
+             onmouseleave="this.style.transform='';this.style.boxShadow=''">
+            <img src="https://i.imgur.com/2Kj4Gmr.jpg" alt="Brawl Stars" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
+                 onerror="this.style.display='none'"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
+            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
+              <div>
+                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Brawl Stars</p>
+                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">Gemas</h3>
+                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 10,99</span></p>
               </div>
-            </a>
-          </div>
-          <div class="catalog-card-wrap reveal" style="transition-delay:0ms">
-            <a class="catalog-card" href="free-fire.html" style="background:linear-gradient(135deg,#2a0a0a 0%,#8b1a00 50%,#1a0808 100%)">
-              <img alt="Free Fire" class="catalog-card-bg" src="https://i.imgur.com/nzfUqN7.jpg" onerror="this.style.display='none'"/>
-              <span class="catalog-card-overlay"></span>
-              <span class="catalog-card-shimmer"></span>
-              <div class="catalog-card-content">
-                <div class="catalog-card-info">
-                  <p class="catalog-card-game">Free Fire</p>
-                  <h3 class="catalog-card-title font-display">Diamantes</h3>
-                  <p class="catalog-card-price">a partir de <span class="price-gradient">R$ 15,99</span></p>
-                </div>
-                <span class="catalog-card-btn">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
+              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+            </div>
+          </a>
+          <a href="free-fire.html" style="
+            display:flex;flex-direction:column;justify-content:flex-end;
+            position:relative;overflow:hidden;border-radius:16px;
+            border:1px solid rgba(255,255,255,0.1);
+            min-height:180px;text-decoration:none;
+            background:linear-gradient(160deg,#2a0a0a,#c2410c,#1a0808);
+            transition:transform 0.25s,box-shadow 0.25s;
+            -webkit-tap-highlight-color:transparent;
+          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
+             onmouseleave="this.style.transform='';this.style.boxShadow=''">
+            <img src="https://i.imgur.com/nzfUqN7.jpg" alt="Free Fire" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
+                 onerror="this.style.display='none'"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
+            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
+              <div>
+                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Free Fire</p>
+                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">Diamantes</h3>
+                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 15,99</span></p>
               </div>
-            </a>
-          </div>
-          <div class="catalog-card-wrap reveal" style="transition-delay:90ms">
-            <a class="catalog-card" href="valorant.html" style="background:linear-gradient(135deg,#2a0808 0%,#8b0000 50%,#1a0a0a 100%)">
-              <img alt="Valorant" class="catalog-card-bg" src="https://i.imgur.com/hTqHJz7.jpg" onerror="this.style.display='none'"/>
-              <span class="catalog-card-overlay"></span>
-              <span class="catalog-card-shimmer"></span>
-              <div class="catalog-card-content">
-                <div class="catalog-card-info">
-                  <p class="catalog-card-game">Valorant</p>
-                  <h3 class="catalog-card-title font-display">VP</h3>
-                  <p class="catalog-card-price">a partir de <span class="price-gradient">R$ 15,99</span></p>
-                </div>
-                <span class="catalog-card-btn">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
+              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+            </div>
+          </a>
+          <a href="valorant.html" style="
+            display:flex;flex-direction:column;justify-content:flex-end;
+            position:relative;overflow:hidden;border-radius:16px;
+            border:1px solid rgba(255,255,255,0.1);
+            min-height:180px;text-decoration:none;
+            background:linear-gradient(160deg,#1a0808,#9b1c1c,#2a0808);
+            transition:transform 0.25s,box-shadow 0.25s;
+            -webkit-tap-highlight-color:transparent;
+          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
+             onmouseleave="this.style.transform='';this.style.boxShadow=''">
+            <img src="https://i.imgur.com/hTqHJz7.jpg" alt="Valorant" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
+                 onerror="this.style.display='none'"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
+            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
+              <div>
+                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Valorant</p>
+                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">VP</h3>
+                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 15,99</span></p>
               </div>
-            </a>
-          </div>
-          <div class="catalog-card-wrap reveal" style="transition-delay:180ms">
-            <a class="catalog-card" href="minecraft.html" style="background:linear-gradient(135deg,#0a1a0a 0%,#1a5c1a 50%,#0a1208 100%)">
-              <img alt="Minecraft" class="catalog-card-bg" src="https://i.imgur.com/GcTdOBC.jpg" onerror="this.style.display='none'"/>
-              <span class="catalog-card-overlay"></span>
-              <span class="catalog-card-shimmer"></span>
-              <div class="catalog-card-content">
-                <div class="catalog-card-info">
-                  <p class="catalog-card-game">Minecraft</p>
-                  <h3 class="catalog-card-title font-display">Minecoins</h3>
-                  <p class="catalog-card-price">a partir de <span class="price-gradient">R$ 13,99</span></p>
-                </div>
-                <span class="catalog-card-btn">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
+              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+            </div>
+          </a>
+          <a href="minecraft.html" style="
+            display:flex;flex-direction:column;justify-content:flex-end;
+            position:relative;overflow:hidden;border-radius:16px;
+            border:1px solid rgba(255,255,255,0.1);
+            min-height:180px;text-decoration:none;
+            background:linear-gradient(160deg,#0a1a0a,#166534,#0a1208);
+            transition:transform 0.25s,box-shadow 0.25s;
+            -webkit-tap-highlight-color:transparent;
+          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
+             onmouseleave="this.style.transform='';this.style.boxShadow=''">
+            <img src="https://i.imgur.com/GcTdOBC.jpg" alt="Minecraft" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
+                 onerror="this.style.display='none'"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
+            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
+              <div>
+                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Minecraft</p>
+                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">Minecoins</h3>
+                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 13,99</span></p>
               </div>
-            </a>
-          </div>
+              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+            </div>
+          </a>
         </div>
       </div>
     </section>

@@ -636,3 +636,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (bar && getCartCount() === 0) bar.style.display = 'none';
   updateBottomBar();
 });
+
+// ── REVEAL FALLBACK — garante visibilidade mesmo sem IntersectionObserver ──
+document.addEventListener('DOMContentLoaded', () => {
+  // Fallback: torna tudo visivel apos 400ms se ainda nao foi ativado
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.reveal--visible)').forEach(el => {
+      el.classList.add('reveal--visible');
+    });
+  }, 400);
+});
