@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<meta name="theme-color" content="#101a2e"/>
+<title>Finalizar compra — NitroCoins</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<!-- QR code library -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,sans-serif;background:#0d1117;color:#e6edf3;-webkit-font-smoothing:antialiased;min-height:100vh;}
+.input-field{width:100%;padding:12px 14px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:12px;color:#e6edf3;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s;}
+.input-field:focus{border-color:#6366f1;background:rgba(99,102,241,0.06);}
+.input-field::placeholder{color:#4a5568;}
+.card-section{border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#161b22;padding:20px 16px;}
+.step-num{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;color:rgba(255,255,255,0.25);margin-bottom:12px;}
+.step-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;}
+.step-icon{width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(255,255,255,0.06);color:#38bdf8;}
+.step-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;}
+.step-desc{font-size:13px;color:#8b949e;margin-top:2px;}
+.delivery-btn{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px;border-radius:12px;border:1.5px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);cursor:pointer;font-size:13px;font-weight:500;color:#8b949e;transition:all .2s;}
+.delivery-btn.active{border-color:#38bdf8;background:rgba(56,189,248,0.1);color:#38bdf8;}
+.delivery-btn svg{transition:color .2s;}
+.pix-box{display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px;background:rgba(255,255,255,0.04);border:1.5px solid rgba(56,189,248,0.25);border-radius:14px;}
+.order-summary-item{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+.order-summary-item:last-child{border-bottom:none;}
+@media(min-width:768px){
+  .checkout-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:24px;}
+}
+</style>
+</head>
+<body>
+
+<header style="position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(13,17,23,0.9);backdrop-filter:blur(20px);">
+  <div style="max-width:1152px;margin:0 auto;display:flex;height:64px;align-items:center;justify-content:space-between;gap:16px;padding:0 16px;">
+    <a href="index.html" style="display:flex;align-items:center;gap:4px;text-decoration:none;">
+      <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_12%20%281%29-IqyptOWQRX5iJMm9AjCdOhgsDiRBd4.png" style="width:64px;height:64px;object-fit:contain;" alt=""/>
+      <span style="display:flex;align-items:center;gap:2px;">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_16%20%282%29%20-%20Copia-g3RjalAowfZMTNGzUnBHXxp349PYQj.png" style="height:16px;width:auto;" alt="Nitro"/>
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_16%20%281%29%20-%20Copia-XxFriH3xGsAOPWWJXyFrYKkb5zEWzy.png" style="height:14px;width:auto;" alt="Coins"/>
+      </span>
+    </a>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <a href="index.html#catalogo" style="display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 12px;border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#8b949e;text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;" onmouseenter="this.style.color='#e6edf3'" onmouseleave="this.style.color='#8b949e'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        Continuar comprando
+      </a>
+      <button onclick="openCartDrawer()" style="position:relative;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;background:rgba(255,255,255,0.08);border:none;border-radius:12px;color:#e6edf3;font-size:13px;font-weight:500;cursor:pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+        <span id="cart-badge" style="display:none;position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 4px;background:#6366f1;border-radius:999px;font-size:11px;font-weight:700;color:#fff;align-items:center;justify-content:center;"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main-content" style="max-width:1152px;margin:0 auto;padding:32px 16px 64px;">
+
+<!-- ── EMPTY STATE (hidden by default if cart has items) -->
+<div id="empty-state" style="display:none;flex-direction:column;align-items:center;gap:16px;padding:80px 16px;text-align:center;max-width:400px;margin:0 auto;">
+  <span style="width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:16px;background:rgba(255,255,255,0.06);color:#8b949e;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
+  </span>
+  <h1 style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;">Seu carrinho está vazio</h1>
+  <p style="font-size:14px;color:#8b949e;">Escolha suas moedas no catálogo e volte aqui para finalizar com desconto.</p>
+  <a href="index.html#catalogo" style="display:inline-flex;align-items:center;padding:12px 28px;background:linear-gradient(135deg,#38bdf8,#6366f1);border-radius:12px;color:#fff;font-weight:600;text-decoration:none;font-size:14px;margin-top:8px;">Ver ofertas</a>
+</div>
+
+<!-- ── CHECKOUT FORM ──────────────────────────────────────────────────────── -->
+<div id="checkout-view" style="display:none;">
+  <!-- Header -->
+  <div style="margin-bottom:24px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;">
+      <div>
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,5vw,36px);font-weight:700;letter-spacing:-.02em;">Finalizar <span style="background:linear-gradient(90deg,#38bdf8,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">compra</span></h1>
+        <p style="margin-top:4px;font-size:13px;color:#8b949e;">Preencha seus dados e receba suas moedas em segundos.</p>
+      </div>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;border:1px solid rgba(56,189,248,0.3);background:rgba(56,189,248,0.08);font-size:12px;font-weight:600;color:#38bdf8;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Ambiente seguro
+      </span>
+    </div>
+  </div>
+
+  <form id="checkout-form" onsubmit="submitCheckout(event)">
+    <div class="checkout-grid">
+      <!-- LEFT: Steps -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+
+        <!-- STEP 1: Nome -->
+        <div class="card-section">
+          <div class="step-num">01</div>
+          <div class="step-header">
+            <span class="step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            <div>
+              <div class="step-title">Seus dados</div>
+              <div class="step-desc">Precisamos do seu nome para identificar o pedido.</div>
+            </div>
+          </div>
+          <label style="display:block;">
+            <span style="display:block;font-size:13px;font-weight:500;color:#8b949e;margin-bottom:6px;">Nome completo</span>
+            <input id="ck-name" name="name" type="text" required placeholder="Seu nome" class="input-field"/>
+          </label>
+        </div>
+
+        <!-- STEP 2: Canal de entrega -->
+        <div class="card-section">
+          <div class="step-num">02</div>
+          <div class="step-header">
+            <span class="step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
+            </span>
+            <div>
+              <div class="step-title">Onde deseja receber seu produto?</div>
+              <div class="step-desc">Escolha o canal de entrega e informe seu contato.</div>
+            </div>
+          </div>
+          <!-- Delivery buttons: WhatsApp / E-mail / Ambos (exactly like original) -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;">
+            <button type="button" onclick="selectDelivery('whatsapp')" id="del-whatsapp" class="delivery-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+              WhatsApp
+            </button>
+            <button type="button" onclick="selectDelivery('email')" id="del-email" class="delivery-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+              E-mail
+            </button>
+            <button type="button" onclick="selectDelivery('ambos')" id="del-ambos" class="delivery-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+              Ambos
+            </button>
+          </div>
+          <!-- Conditional fields -->
+          <div id="field-whatsapp" style="display:none;margin-bottom:12px;">
+            <label style="display:block;">
+              <span style="display:block;font-size:13px;font-weight:500;color:#8b949e;margin-bottom:6px;">WhatsApp</span>
+              <input id="ck-phone" name="phone" type="tel" inputmode="tel" placeholder="(00) 00000-0000" class="input-field" oninput="this.value=maskPhone(this.value)"/>
+            </label>
+          </div>
+          <div id="field-email" style="display:none;margin-bottom:12px;">
+            <label style="display:block;">
+              <span style="display:block;font-size:13px;font-weight:500;color:#8b949e;margin-bottom:6px;">E-mail</span>
+              <input id="ck-email" name="email" type="email" placeholder="voce@email.com" class="input-field"/>
+            </label>
+          </div>
+          <div id="delivery-hint" style="display:none;margin-top:8px;padding:10px 12px;background:rgba(255,255,255,0.04);border-radius:10px;">
+            <p style="font-size:12px;color:#8b949e;display:flex;align-items:flex-start;gap:6px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" style="flex-shrink:0;margin-top:1px;"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+              A entrega é automática. Confira seus dados de contato com atenção.
+            </p>
+          </div>
+        </div>
+
+        <!-- STEP 3: Pagamento (Pix only, pré-selecionado, MercadoPago icon) -->
+        <div class="card-section">
+          <div class="step-num">03</div>
+          <div class="step-header">
+            <span class="step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            </span>
+            <div>
+              <div class="step-title">Pagamento</div>
+              <div class="step-desc">Escolha como prefere pagar.</div>
+            </div>
+          </div>
+          <!-- Pix box (pré-selecionado, exactly like original with Pix icon + mercadopago) -->
+          <div class="pix-box">
+            <div style="display:flex;align-items:center;gap:12px;width:100%;">
+              <span style="width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:10px;background:linear-gradient(135deg,#38bdf8,#6366f1);overflow:hidden;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5.5 8.5 9 12l-3.5 3.5L2 12l3.5-3.5Z"/><path d="m12 2 3.5 3.5L12 9 8.5 5.5 12 2Z"/><path d="M18.5 8.5 22 12l-3.5 3.5L15 12l3.5-3.5Z"/><path d="m12 15 3.5 3.5L12 22l-3.5-3.5L12 15Z"/></svg>
+              </span>
+              <div style="flex:1;">
+                <p style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;">Pix</p>
+                <p style="font-size:12px;color:#8b949e;">Pré-selecionado para aprovação rápida.</p>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p style="font-size:13px;color:#8b949e;margin-top:8px;text-align:center;">Após confirmar o pedido, você receberá as instruções de pagamento via Pix.</p>
+          </div>
+          <!-- Trust items -->
+          <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin-top:14px;">
+            <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#8b949e;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+              Entrega instantânea
+            </span>
+            <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#8b949e;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+              Pagamento criptografado
+            </span>
+            <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#8b949e;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+              Suporte 24/7
+            </span>
+          </div>
+        </div>
+
+        <!-- Error message -->
+        <div id="ck-error" style="display:none;padding:12px 16px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:12px;font-size:13px;color:#f87171;"></div>
+
+        <!-- Submit -->
+        <button type="submit" id="submit-btn" style="width:100%;padding:16px;background:linear-gradient(135deg,#38bdf8,#6366f1);border:none;border-radius:14px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s;">
+          Ir para o pagamento
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <p style="text-align:center;font-size:12px;color:#8b949e;margin-top:6px;">Pagamento 100% seguro · Entrega instantânea</p>
+
+      </div>
+
+      <!-- RIGHT: Order summary -->
+      <aside style="margin-top:16px;">
+        <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#161b22;padding:20px;position:sticky;top:80px;">
+          <h2 style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;margin-bottom:16px;">Resumo do pedido</h2>
+          <ul id="summary-items" style="display:flex;flex-direction:column;gap:0;"></ul>
+          <!-- Totals -->
+          <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);">
+            <div id="savings-row" style="display:none;flex-direction:column;gap:6px;padding:10px 12px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:10px;margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;font-size:13px;">
+                <span style="color:#8b949e;">Preço original</span>
+                <span id="original-price" style="text-decoration:line-through;color:#8b949e;"></span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;">
+                <span style="color:#22c55e;font-weight:600;">Você economizou</span>
+                <span id="savings-amount" style="color:#22c55e;font-weight:600;"></span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:14px;font-weight:500;color:#8b949e;">Total a pagar</span>
+              <span id="summary-total" style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;"></span>
+            </div>
+          </div>
+          <!-- Guarantia badge -->
+          <div style="margin-top:14px;display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:10px;">
+            <img src="garantia-30-dias.webp" style="width:36px;height:36px;object-fit:contain;" onerror="this.style.display='none'" alt="Garantia"/>
+            <div>
+              <p style="font-size:12px;font-weight:600;color:#fbbf24;">30 dias de garantia</p>
+              <p style="font-size:11px;color:#8b949e;">Reembolso total se não receber</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </form>
+</div>
+
+<!-- ── PIX PAYMENT MODAL (after form submit) ──────────────────────────────── -->
+<div id="pix-modal" style="display:none;position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;">
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);" onclick=""></div>
+  <div role="dialog" style="position:relative;width:100%;max-width:440px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);background:#161b22;box-shadow:0 24px 64px rgba(0,0,0,0.7);overflow:hidden;">
+    <!-- Modal header -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.08);">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(255,255,255,0.06);overflow:hidden;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M5.5 8.5 9 12l-3.5 3.5L2 12l3.5-3.5Z"/><path d="m12 2 3.5 3.5L12 9 8.5 5.5 12 2Z"/><path d="M18.5 8.5 22 12l-3.5 3.5L15 12l3.5-3.5Z"/><path d="m12 15 3.5 3.5L12 22l-3.5-3.5L12 15Z"/></svg>
+        </span>
+        <div>
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;">Pagamento via Pix</p>
+          <p style="font-size:12px;color:#8b949e;">Escaneie ou copie o código</p>
+        </div>
+      </div>
+      <span style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;" id="pix-modal-total"></span>
+    </div>
+    <!-- Modal body -->
+    <div id="pix-modal-body" style="padding:20px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+      <!-- Generating state -->
+      <div id="pix-loading" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:32px 0;">
+        <div style="width:40px;height:40px;border:3px solid rgba(56,189,248,0.2);border-top-color:#38bdf8;border-radius:50%;animation:spin 1s linear infinite;"></div>
+        <p style="font-size:13px;color:#8b949e;">Gerando QR Code Pix...</p>
+      </div>
+      <!-- QR ready state (initially hidden) -->
+      <div id="pix-ready" style="display:none;flex-direction:column;align-items:center;gap:14px;width:100%;">
+        <div style="padding:12px;background:#fff;border-radius:12px;">
+          <canvas id="qr-canvas" width="200" height="200"></canvas>
+        </div>
+        <p style="font-size:13px;color:#8b949e;">OU copie o código Pix abaixo</p>
+        <div style="width:100%;padding:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;">
+          <p style="font-size:10px;font-weight:600;color:#8b949e;margin-bottom:6px;letter-spacing:.08em;">CÓDIGO PIX</p>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <code id="pix-code-text" style="font-size:12px;color:#e6edf3;word-break:break-all;flex:1;line-height:1.5;">00020126330014BR.GOV.BCB.PIX01110937649500120204000053039865802BR5910NitroCoins6009SAO PAULO62070503***6304ABCD</code>
+            <button onclick="copyPixCode()" style="flex-shrink:0;padding:8px 14px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);border-radius:8px;color:#6366f1;font-size:12px;font-weight:600;cursor:pointer;">Copiar</button>
+          </div>
+        </div>
+        <div style="width:100%;display:flex;align-items:center;gap:6px;padding:10px 12px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:10px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span style="font-size:12px;color:#22c55e;">Suas moedas chegam automaticamente após o pagamento</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:#8b949e;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Código válido por <strong id="pix-countdown" style="color:#e6edf3;margin-left:4px;">15:00</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SUCCESS STATE ──────────────────────────────────────────────────────── -->
+<div id="success-state" style="display:none;flex-direction:column;align-items:center;gap:20px;padding:80px 16px;text-align:center;max-width:480px;margin:0 auto;">
+  <span style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 0 40px rgba(34,197,94,0.4);">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+  </span>
+  <div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;">Pagamento aprovado!</h1>
+    <p style="font-size:14px;color:#8b949e;margin-top:8px;line-height:1.7;">Suas moedas estão sendo processadas.<br/>Você receberá a confirmação pelo canal escolhido.</p>
+  </div>
+  <div style="width:100%;padding:16px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:14px;">
+    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;">
+      <span style="color:#8b949e;">Total pago</span>
+      <span id="success-total" style="font-weight:700;color:#22c55e;"></span>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;">
+      <span style="color:#8b949e;">Entrega estimada</span>
+      <span style="font-weight:600;">Imediata ⚡</span>
+    </div>
+  </div>
+  <a href="index.html#catalogo" style="display:inline-flex;align-items:center;padding:14px 32px;background:linear-gradient(135deg,#38bdf8,#6366f1);border-radius:12px;color:#fff;font-weight:700;text-decoration:none;font-size:15px;">Comprar mais</a>
+</div>
+
+</main>
+
+<footer style="border-top:1px solid rgba(255,255,255,0.08);background:#0d1117;margin-top:40px;">
+  <div style="max-width:1152px;margin:0 auto;padding:32px 16px;">
+    <div style="display:flex;flex-direction:column;gap:4px;color:#6e7681;font-size:12px;">
+      <p>© 2026 NitroCoins. Todos os direitos reservados.</p>
+      <p>NitroCoins - CNPJ 09.376.495/0001-22. Loja independente, sem vínculo ou afiliação oficial com os detentores das marcas dos jogos citados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER (also accessible from this page) -->
+<div id="cart-overlay" onclick="closeCartDrawer()" style="display:none;position:fixed;inset:0;z-index:50;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);"></div>
+<aside id="cart-drawer" style="position:fixed;top:0;right:-100vw;width:100vw;max-width:420px;height:100dvh;z-index:51;background:#161b22;border-left:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;transition:right .3s cubic-bezier(.25,.46,.45,.94);box-shadow:-8px 0 40px rgba(0,0,0,0.5);">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.08);">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;color:#38bdf8;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> Seu carrinho</h2>
+    <button onclick="closeCartDrawer()" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.06);border:none;border-radius:8px;color:#e6edf3;cursor:pointer;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+  <div id="drawer-body" style="flex:1;overflow-y:auto;padding:14px 16px;"></div>
+</aside>
+
+<!-- WhatsApp -->
+<div style="position:fixed;bottom:24px;right:16px;z-index:49;display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+  <span style="display:flex;align-items:center;gap:6px;padding:5px 10px;background:rgba(13,17,23,0.92);border:1px solid rgba(56,189,248,0.25);border-radius:999px;">
+    <span style="width:7px;height:7px;background:#22c55e;border-radius:50%;display:inline-block;"></span>
+    <span style="font-size:11px;font-weight:600;">Suporte online</span>
+  </span>
+  <a href="https://wa.me/5511999999999" target="_blank" style="width:52px;height:52px;background:#25d366;border-radius:9999px;display:flex;align-items:center;justify-content:center;">
+    <img src="whatsapp-logo.png" style="width:28px;height:28px;object-fit:contain;" onerror="this.style.display='none'" alt="WhatsApp"/>
+  </a>
+</div>
+
+<style>
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+</style>
+
+<script>
+// ── Cart state ───────────────────────────────────────────────────────────────
+function getCart() { return JSON.parse(localStorage.getItem('nc_cart') || '[]'); }
+function saveCart(c) { localStorage.setItem('nc_cart', JSON.stringify(c)); }
+function formatBRL(n) { return 'R$ ' + n.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+function getTotal() { return getCart().reduce((s,i) => s + i.price * i.qty, 0); }
+
+let deliveryMode = null;
+
+// ── Init page ────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const cart = getCart();
+  const badge = document.getElementById('cart-badge');
+  const count = cart.reduce((s,i) => s+i.qty, 0);
+  if (badge && count > 0) { badge.textContent = count; badge.style.display = 'inline-flex'; }
+
+  if (cart.length === 0) {
+    document.getElementById('empty-state').style.display = 'flex';
+  } else {
+    document.getElementById('checkout-view').style.display = 'block';
+    renderSummary(cart);
+    // Restore saved data
+    try {
+      const saved = JSON.parse(document.cookie.match(/nc_checkout=([^;]+)/)?.[1] ?? '{}');
+      if (saved.nome) document.getElementById('ck-name').value = saved.nome;
+      if (saved.delivery) selectDelivery(saved.delivery, false);
+      if (saved.whatsapp) { const p = document.getElementById('ck-phone'); if(p) p.value = saved.whatsapp; }
+      if (saved.email) { const e = document.getElementById('ck-email'); if(e) e.value = saved.email; }
+    } catch(e) {}
+  }
+});
+
+function renderSummary(cart) {
+  const ul = document.getElementById('summary-items');
+  let totalOriginal = 0;
+  ul.innerHTML = cart.map(item => {
+    // estimate original as 5x the promo price (like original ~97% off)
+    totalOriginal += item.price * item.qty * 5;
+    return `<li class="order-summary-item">
+      <img src="${item.image || 'products/robux-01.webp'}" style="width:56px;height:56px;border-radius:10px;object-fit:cover;background:rgba(255,255,255,0.05);flex-shrink:0;" onerror="this.src='categories/${item.game?.toLowerCase().replace(/ /g,'-') || 'roblox'}.webp'" alt=""/>
+      <div style="flex:1;">
+        <p style="font-size:12px;color:#38bdf8;font-weight:500;">${item.game}</p>
+        <p style="font-size:14px;font-weight:600;line-height:1.3;margin-top:2px;">${item.name}</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+          <span style="font-size:12px;color:#8b949e;">Qty: ${item.qty}</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#e6edf3;">${formatBRL(item.price * item.qty)}</span>
+        </div>
+      </div>
+    </li>`;
+  }).join('');
+  const total = getTotal();
+  document.getElementById('summary-total').textContent = formatBRL(total);
+  document.getElementById('pix-modal-total').textContent = formatBRL(total);
+  document.getElementById('success-total').textContent = formatBRL(total);
+};
+
+// ── Delivery channel selection ────────────────────────────────────────────────
+function selectDelivery(mode, save=true) {
+  deliveryMode = mode;
+  ['whatsapp','email','ambos'].forEach(m => {
+    const btn = document.getElementById('del-'+m);
+    btn.classList.toggle('active', m === mode);
+  });
+  const fw = document.getElementById('field-whatsapp');
+  const fe = document.getElementById('field-email');
+  const hint = document.getElementById('delivery-hint');
+  fw.style.display = (mode === 'whatsapp' || mode === 'ambos') ? 'block' : 'none';
+  fe.style.display = (mode === 'email' || mode === 'ambos') ? 'block' : 'none';
+  hint.style.display = 'block';
+  const phoneInput = document.getElementById('ck-phone');
+  const emailInput = document.getElementById('ck-email');
+  if (phoneInput) phoneInput.required = (mode === 'whatsapp' || mode === 'ambos');
+  if (emailInput) emailInput.required = (mode === 'email' || mode === 'ambos');
+  if (save) saveCookieData();
+}
+
+function maskPhone(v) {
+  v = v.replace(/\D/g,'').slice(0,11);
+  if (v.length <= 2) return v.length ? '(' + v : '';
+  if (v.length <= 7) return `(${v.slice(0,2)}) ${v.slice(2)}`;
+  return `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+}
+
+function saveCookieData() {
+  const data = {
+    nome: document.getElementById('ck-name')?.value || '',
+    delivery: deliveryMode,
+    whatsapp: document.getElementById('ck-phone')?.value || '',
+    email: document.getElementById('ck-email')?.value || '',
+  };
+  document.cookie = 'nc_checkout=' + JSON.stringify(data) + ';max-age=2592000;path=/';
+}
+
+// ── Form submit → show Pix modal ─────────────────────────────────────────────
+function submitCheckout(e) {
+  e.preventDefault();
+  if (!deliveryMode) {
+    showError('Selecione como deseja receber suas moedas.');
+    return;
+  }
+  hideError();
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+  saveCookieData();
+  // Show Pix modal
+  const modal = document.getElementById('pix-modal');
+  modal.style.display = 'flex';
+  // Generate QR code after short delay (simulating API call)
+  setTimeout(() => generateQR(), 1200);
+}
+
+function generateQR() {
+  const pixCode = '00020126580014BR.GOV.BCB.PIX0136' + crypto.randomUUID().replace(/-/g,'').slice(0,32) + '5204000053039865802BR5910NitroCoins6009SAO PAULO62070503***63044C5D';
+  document.getElementById('pix-code-text').textContent = pixCode;
+  document.getElementById('pix-loading').style.display = 'none';
+  const ready = document.getElementById('pix-ready');
+  ready.style.display = 'flex';
+
+  // Generate QR using canvas
+  if (typeof QRCode !== 'undefined') {
+    QRCode.toCanvas(document.getElementById('qr-canvas'), pixCode, {width:200, margin:1, color:{dark:'#000000',light:'#ffffff'}}, function(){});
+  }
+
+  startPixTimer();
+}
+
+let pixTimerInterval = null;
+function startPixTimer() {
+  let secs = 900;
+  clearInterval(pixTimerInterval);
+  pixTimerInterval = setInterval(() => {
+    secs--;
+    const el = document.getElementById('pix-countdown');
+    if (!el) { clearInterval(pixTimerInterval); return; }
+    if (secs <= 0) {
+      clearInterval(pixTimerInterval);
+      el.textContent = 'Expirado';
+      return;
+    }
+    el.textContent = String(Math.floor(secs/60)).padStart(2,'0') + ':' + String(secs%60).padStart(2,'0');
+  }, 1000);
+}
+
+function copyPixCode() {
+  const code = document.getElementById('pix-code-text').textContent;
+  navigator.clipboard.writeText(code).catch(()=>{});
+  showToast('Código Pix copiado!');
+}
+
+// ── Success (simulate payment confirmed) ──────────────────────────────────────
+function confirmPaid() {
+  clearInterval(pixTimerInterval);
+  document.getElementById('pix-modal').style.display = 'none';
+  document.getElementById('checkout-view').style.display = 'none';
+  document.getElementById('success-state').style.display = 'flex';
+  // Clear cart
+  localStorage.removeItem('nc_cart');
+}
+
+// ── Error display ────────────────────────────────────────────────────────────
+function showError(msg) {
+  const el = document.getElementById('ck-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideError() {
+  document.getElementById('ck-error').style.display = 'none';
+}
+
+// ── Cart Drawer (from header button) ─────────────────────────────────────────
+function openCartDrawer() {
+  const cart = getCart();
+  const body = document.getElementById('drawer-body');
+  const overlay = document.getElementById('cart-overlay');
+  document.getElementById('cart-drawer').style.right = '0';
+  overlay.style.display = 'block';
+  if (cart.length === 0) {
+    body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;text-align:center;color:#8b949e;"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"36\" height=\"36\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"8\" cy=\"21\" r=\"1\"/><circle cx=\"19\" cy=\"21\" r=\"1\"/><path d=\"M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12\"/></svg><p>Carrinho vazio</p><a href=\"index.html#catalogo\" style=\"color:#6366f1;font-size:13px;\">Ver ofertas</a></div>';
+  } else {
+    body.innerHTML = cart.map(i => `<div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <img src="${i.image||'products/robux-01.webp'}" style="width:44px;height:44px;border-radius:8px;object-fit:cover;" onerror="this.src='categories/roblox.webp'" alt=""/>
+      <div style="flex:1;"><p style="font-size:13px;font-weight:600;">${i.name}</p><p style="font-size:12px;color:#38bdf8;margin-top:2px;">${i.game}</p></div>
+      <p style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;">${formatBRL(i.price*i.qty)}</p>
+    </div>`).join('') + `<div style="margin-top:16px;"><a href="checkout.html" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:14px;background:linear-gradient(135deg,#38bdf8,#6366f1);border-radius:12px;color:#fff;font-weight:700;text-decoration:none;font-size:14px;">Finalizar compra →</a></div>`;
+  }
+}
+function closeCartDrawer() {
+  document.getElementById('cart-drawer').style.right = '-100vw';
+  document.getElementById('cart-overlay').style.display = 'none';
+}
+
+// ── Toast ────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  let t = document.getElementById('nc-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'nc-toast';
+    t.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:999;padding:10px 20px;background:#6366f1;color:#fff;border-radius:12px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(99,102,241,0.4);transition:opacity .3s;pointer-events:none;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg; t.style.opacity = '1';
+  clearTimeout(t._to);
+  t._to = setTimeout(() => { t.style.opacity = '0'; }, 2000);
+}
+</script>
+</body>
+</html>
