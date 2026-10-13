@@ -1,515 +1,547 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="theme-color" content="#0d1117"/>
-  <title>NitroCoins - Moedas virtuais com ate 90% OFF</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
-  
-
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<meta name="theme-color" content="#101a2e"/>
+<meta name="color-scheme" content="dark"/>
+<title>NitroCoins — Moedas virtuais de jogos com até 97% OFF</title>
+<meta name="description" content="Compre moedas, gemas e créditos dos seus jogos favoritos por uma fração do preço. Entrega instantânea, pagamento seguro e suporte 24/7."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-@media (min-width:560px) { #catalog-grid { grid-template-columns: repeat(2,1fr) !important; } }
-@media (min-width:900px) { #catalog-grid { grid-template-columns: repeat(3,1fr) !important; } }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{font-family:'Inter',-apple-system,sans-serif;background:#0d1117;color:#e6edf3;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-bottom:calc(66px + env(safe-area-inset-bottom,0px));}
+body.cart-open{overflow:hidden;}
+/* Mobile defaults */
+.hide-mobile{display:none!important;}
+.desktop-nav{display:none!important;}
+.mobile-btn{display:flex!important;}
+.grid-3{grid-template-columns:1fr!important;}
+.grid-2{grid-template-columns:1fr!important;}
+.reviews-grid{grid-template-columns:1fr!important;}
+.steps-grid{grid-template-columns:1fr!important;}
+.footer-cols{grid-template-columns:1fr!important;}
+.guarantee-inner{flex-direction:column!important;text-align:center!important;}
+/* Tablet+ */
+@media(min-width:560px){
+  .grid-3{grid-template-columns:repeat(2,1fr)!important;}
+  .reviews-grid{grid-template-columns:repeat(2,1fr)!important;}
+  .grid-2{grid-template-columns:repeat(2,1fr)!important;}
+}
+@media(min-width:768px){
+  .hide-mobile{display:inline!important;}
+  .desktop-nav{display:flex!important;}
+  .mobile-btn{display:none!important;}
+  body{padding-bottom:0!important;}
+  #bottom-cart-bar{display:none!important;}
+  .steps-grid{grid-template-columns:repeat(3,1fr)!important;}
+  .reviews-grid{grid-template-columns:repeat(3,1fr)!important;}
+  .footer-cols{grid-template-columns:2fr 1fr!important;}
+  .guarantee-inner{flex-direction:row!important;text-align:left!important;}
+}
+@media(min-width:1024px){
+  .grid-3{grid-template-columns:repeat(3,1fr)!important;}
+}
+/* Carousel */
+.nc-carousel-wrap{position:relative;overflow:hidden;border-radius:20px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.nc-track{display:flex;width:100%;transition:transform .5s cubic-bezier(.25,.46,.45,.94);}
+.nc-slide{position:relative;flex-shrink:0;width:100%;aspect-ratio:21/9;}
+@media(min-width:640px){.nc-slide{aspect-ratio:3/1;}}
+/* Cat card hover effect */
+.cat-card:hover .cat-shimmer{transform:translateX(100%)!important;}
+.cat-card:hover img{transform:scale(1.05);}
+.cat-card:hover .cat-pill{transform:translateX(4px);}
 </style>
 </head>
 <body>
-<div class="noise-overlay"></div>
-<div class="page-wrapper">
-  <header class="site-header" id="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="logo-link">
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_12%20%281%29-IqyptOWQRX5iJMm9AjCdOhgsDiRBd4.png" alt="" class="logo-icon"/>
-        <span class="logo-text">
-          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_16%20%282%29%20-%20Copia-g3RjalAowfZMTNGzUnBHXxp349PYQj.png" alt="Nitro" class="logo-nitro"/>
-          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_16%20%281%29%20-%20Copia-XxFriH3xGsAOPWWJXyFrYKkb5zEWzy.png" alt="Coins" class="logo-coins"/>
-        </span>
-      </a>
-      <nav class="desktop-nav">
-        <a href="index.html#catalogo" class="nav-link">Catalogo</a>
-        <a href="index.html#como-funciona" class="nav-link">Como funciona</a>
-        <a href="index.html#avaliacoes" class="nav-link">Avaliacoes</a>
-        <a href="index.html#faq" class="nav-link">FAQ</a>
-      </nav>
-      <div class="header-actions">
-        <button class="btn-orders">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/></svg>
-          <span class="hide-mobile">Pedidos</span>
-        </button>
-        <button class="btn-cart" id="btn-cart" onclick="toggleCart()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-          <span class="hide-mobile">Carrinho</span>
-          <span class="cart-badge" id="cart-badge" style="display:none">0</span>
-        </button>
-        <button class="btn-menu" id="btn-menu" onclick="toggleMobileNav()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
-        </button>
-      </div>
-    </div>
-    <nav id="mobile-nav" class="mobile-nav" style="display:none">
-      <div class="mobile-nav-inner">
-        <a href="index.html#catalogo" class="mobile-nav-link" onclick="closeMobileNav()">Catalogo</a>
-        <a href="index.html#como-funciona" class="mobile-nav-link" onclick="closeMobileNav()">Como funciona</a>
-        <a href="index.html#avaliacoes" class="mobile-nav-link" onclick="closeMobileNav()">Avaliacoes</a>
-        <a href="index.html#faq" class="mobile-nav-link" onclick="closeMobileNav()">FAQ</a>
-      </div>
+
+<!-- HEADER -->
+<header style="position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(13,17,23,0.85);backdrop-filter:blur(20px);">
+  <div style="max-width:1152px;margin:0 auto;display:flex;height:64px;align-items:center;justify-content:space-between;gap:16px;padding:0 16px;">
+    <a href="index.html" style="display:flex;align-items:center;gap:4px;text-decoration:none;" aria-label="NitroCoins">
+      <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_12%20%281%29-IqyptOWQRX5iJMm9AjCdOhgsDiRBd4.png" style="width:64px;height:64px;object-fit:contain;" alt=""/>
+      <span style="display:flex;align-items:center;gap:2px;">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_16%20%282%29%20-%20Copia-g3RjalAowfZMTNGzUnBHXxp349PYQj.png" style="height:16px;width:auto;" alt="Nitro"/>
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_16%20%281%29%20-%20Copia-XxFriH3xGsAOPWWJXyFrYKkb5zEWzy.png" style="height:14px;width:auto;" alt="Coins"/>
+      </span>
+    </a>
+    <nav style="align-items:center;gap:28px;" class="desktop-nav">
+      <a href="#catalogo" style="font-size:14px;font-weight:500;color:#8b949e;text-decoration:none;transition:color .2s;" onmouseenter="this.style.color='#e6edf3'" onmouseleave="this.style.color='#8b949e'">Catálogo</a>
+      <a href="#como-funciona" style="font-size:14px;font-weight:500;color:#8b949e;text-decoration:none;transition:color .2s;" onmouseenter="this.style.color='#e6edf3'" onmouseleave="this.style.color='#8b949e'">Como funciona</a>
+      <a href="#avaliacoes" style="font-size:14px;font-weight:500;color:#8b949e;text-decoration:none;transition:color .2s;" onmouseenter="this.style.color='#e6edf3'" onmouseleave="this.style.color='#8b949e'">Avaliações</a>
+      <a href="#faq" style="font-size:14px;font-weight:500;color:#8b949e;text-decoration:none;transition:color .2s;" onmouseenter="this.style.color='#e6edf3'" onmouseleave="this.style.color='#8b949e'">FAQ</a>
     </nav>
-  </header>
-  <main>
-    <section id="top" class="hero-section">
-      <div class="bg-dots"></div>
-      <div class="glow-blob glow-blob--left"></div>
-      <div class="glow-blob glow-blob--right"></div>
-      <div class="glow-blob glow-blob--bottom"></div>
-      <div class="hero-inner">
-        <p class="hero-label font-display">Feito para gamers, por gamers</p>
-        <div class="carousel" role="region" aria-label="Destaques NitroCoins">
-          <div class="carousel-track-wrapper" id="carousel-wrapper">
-            <div class="carousel-track" id="carousel-track">
-              <div class="carousel-slide"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_06_32-ixHx4lmCF4s8UCMoGsUydj8jGACQ5M.png" alt="Banner 1" class="carousel-img" draggable="false"/><a href="#catalogo" class="carousel-overlay"></a></div>
-              <div class="carousel-slide"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_06_49-NCIpFcSJ2SExleKHS0zQgN9qXmfLlY.png" alt="Banner 2" class="carousel-img" draggable="false"/><a href="#catalogo" class="carousel-overlay"></a></div>
-              <div class="carousel-slide"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_06_22-5N2nlCWDNywSROXlR6m2HdACQTU2fI.png" alt="Banner 3" class="carousel-img" draggable="false"/><a href="#catalogo" class="carousel-overlay"></a></div>
-              <div class="carousel-slide"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_06_41-un3KWuBxiVO3mCPLu7bFUSwAMZefhP.png" alt="Banner 4" class="carousel-img" draggable="false"/><a href="#catalogo" class="carousel-overlay"></a></div>
-            </div>
-          </div>
-          <button class="carousel-btn carousel-btn--prev" onclick="carouselPrev()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
-          <button class="carousel-btn carousel-btn--next" onclick="carouselNext()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
-          <div class="carousel-dots" id="carousel-dots">
-            <button class="carousel-dot carousel-dot--active" onclick="goToSlide(0)"></button>
-            <button class="carousel-dot" onclick="goToSlide(1)"></button>
-            <button class="carousel-dot" onclick="goToSlide(2)"></button>
-            <button class="carousel-dot" onclick="goToSlide(3)"></button>
-          </div>
-        </div>
-        <div class="trust-badges">
-          <span class="trust-badge"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-accent"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Pagamento protegido</span>
-          <span class="trust-badge"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="icon-accent"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>4,9/5</span>
-          <span class="trust-badge"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-accent"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>+500 mil entregas</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="catalogo" class="catalog-section">
-      <div class="bg-grid"></div>
-      <div class="bg-spotlight"></div>
-      <div class="glow-blob glow-blob--catalog-right"></div>
-      <div class="glow-blob glow-blob--catalog-left"></div>
-      <div class="catalog-inner">
-        <h2 class="section-title font-display">Escolha seu proximo item</h2>
-        <div style="margin-top:20px;display:grid;grid-template-columns:1fr;gap:14px;" id="catalog-grid">
-
-          <a href="roblox.html" style="
-            display:flex;flex-direction:column;justify-content:flex-end;
-            position:relative;overflow:hidden;border-radius:16px;
-            border:1px solid rgba(255,255,255,0.1);
-            min-height:180px;text-decoration:none;
-            background:linear-gradient(160deg,#1a0a2e,#3b1f8c,#0f1940);
-            transition:transform 0.25s,box-shadow 0.25s;
-            -webkit-tap-highlight-color:transparent;
-          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
-             onmouseleave="this.style.transform='';this.style.boxShadow=''">
-            <img src="https://i.imgur.com/cze4Upt.jpg" alt="Roblox" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
-                 onerror="this.style.display='none'"/>
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
-            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
-              <div>
-                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Roblox</p>
-                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">Robux</h3>
-                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 14,99</span></p>
-              </div>
-              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
-            </div>
-          </a>
-          <a href="fortnite.html" style="
-            display:flex;flex-direction:column;justify-content:flex-end;
-            position:relative;overflow:hidden;border-radius:16px;
-            border:1px solid rgba(255,255,255,0.1);
-            min-height:180px;text-decoration:none;
-            background:linear-gradient(160deg,#041020,#0d3060,#0a1628);
-            transition:transform 0.25s,box-shadow 0.25s;
-            -webkit-tap-highlight-color:transparent;
-          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
-             onmouseleave="this.style.transform='';this.style.boxShadow=''">
-            <img src="https://i.imgur.com/FH8DYru.jpg" alt="Fortnite" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
-                 onerror="this.style.display='none'"/>
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
-            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
-              <div>
-                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Fortnite</p>
-                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">V-Bucks</h3>
-                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 18,99</span></p>
-              </div>
-              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
-            </div>
-          </a>
-          <a href="brawl-stars.html" style="
-            display:flex;flex-direction:column;justify-content:flex-end;
-            position:relative;overflow:hidden;border-radius:16px;
-            border:1px solid rgba(255,255,255,0.1);
-            min-height:180px;text-decoration:none;
-            background:linear-gradient(160deg,#2a0a3e,#7c3aed,#1a0828);
-            transition:transform 0.25s,box-shadow 0.25s;
-            -webkit-tap-highlight-color:transparent;
-          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
-             onmouseleave="this.style.transform='';this.style.boxShadow=''">
-            <img src="https://i.imgur.com/2Kj4Gmr.jpg" alt="Brawl Stars" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
-                 onerror="this.style.display='none'"/>
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
-            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
-              <div>
-                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Brawl Stars</p>
-                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">Gemas</h3>
-                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 10,99</span></p>
-              </div>
-              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
-            </div>
-          </a>
-          <a href="free-fire.html" style="
-            display:flex;flex-direction:column;justify-content:flex-end;
-            position:relative;overflow:hidden;border-radius:16px;
-            border:1px solid rgba(255,255,255,0.1);
-            min-height:180px;text-decoration:none;
-            background:linear-gradient(160deg,#2a0a0a,#c2410c,#1a0808);
-            transition:transform 0.25s,box-shadow 0.25s;
-            -webkit-tap-highlight-color:transparent;
-          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
-             onmouseleave="this.style.transform='';this.style.boxShadow=''">
-            <img src="https://i.imgur.com/nzfUqN7.jpg" alt="Free Fire" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
-                 onerror="this.style.display='none'"/>
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
-            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
-              <div>
-                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Free Fire</p>
-                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">Diamantes</h3>
-                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 15,99</span></p>
-              </div>
-              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
-            </div>
-          </a>
-          <a href="valorant.html" style="
-            display:flex;flex-direction:column;justify-content:flex-end;
-            position:relative;overflow:hidden;border-radius:16px;
-            border:1px solid rgba(255,255,255,0.1);
-            min-height:180px;text-decoration:none;
-            background:linear-gradient(160deg,#1a0808,#9b1c1c,#2a0808);
-            transition:transform 0.25s,box-shadow 0.25s;
-            -webkit-tap-highlight-color:transparent;
-          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
-             onmouseleave="this.style.transform='';this.style.boxShadow=''">
-            <img src="https://i.imgur.com/hTqHJz7.jpg" alt="Valorant" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
-                 onerror="this.style.display='none'"/>
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
-            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
-              <div>
-                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Valorant</p>
-                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">VP</h3>
-                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 15,99</span></p>
-              </div>
-              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
-            </div>
-          </a>
-          <a href="minecraft.html" style="
-            display:flex;flex-direction:column;justify-content:flex-end;
-            position:relative;overflow:hidden;border-radius:16px;
-            border:1px solid rgba(255,255,255,0.1);
-            min-height:180px;text-decoration:none;
-            background:linear-gradient(160deg,#0a1a0a,#166534,#0a1208);
-            transition:transform 0.25s,box-shadow 0.25s;
-            -webkit-tap-highlight-color:transparent;
-          " onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(99,102,241,0.25)'"
-             onmouseleave="this.style.transform='';this.style.boxShadow=''">
-            <img src="https://i.imgur.com/GcTdOBC.jpg" alt="Minecraft" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
-                 onerror="this.style.display='none'"/>
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,0.95) 0%,rgba(13,17,23,0.3) 60%,transparent 100%);"></div>
-            <div style="position:relative;z-index:5;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:16px;">
-              <div>
-                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8b949e;margin-bottom:2px;">Minecraft</p>
-                <h3 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,0.6);">Minecoins</h3>
-                <p style="font-size:13px;color:#8b949e;margin-top:4px;">a partir de <span style="font-weight:700;color:#38bdf8;">R$ 13,99</span></p>
-              </div>
-              <span style="display:flex;align-items:center;gap:5px;padding:10px 16px;background:#6366f1;border-radius:999px;font-size:13px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);white-space:nowrap;flex-shrink:0;">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="como-funciona" class="how-section">
-      <div class="bg-grid"></div>
-      <div class="glow-blob glow-blob--how-left"></div>
-      <div class="glow-blob glow-blob--how-right"></div>
-      <div class="how-inner">
-        <div class="section-header">
-          <h2 class="section-title font-display">Simples como apertar start</h2>
-          <p class="section-sub">Tres passos e voce ja esta de volta ao jogo.</p>
-        </div>
-        <div class="steps-grid">
-          <div class="step-card reveal">
-            <span class="step-num font-display">01</span>
-            <span class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg></span>
-            <h3 class="step-title font-display">Escolha seu game</h3>
-            <p class="step-desc">Selecione o jogo e o pacote de moedas que voce quer recarregar.</p>
-          </div>
-          <div class="step-card reveal" style="transition-delay:120ms">
-            <span class="step-num font-display">02</span>
-            <span class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></span>
-            <h3 class="step-title font-display">Pague com seguranca</h3>
-            <p class="step-desc">Pix, cartao ou boleto. Ambiente 100% protegido e criptografado.</p>
-          </div>
-          <div class="step-card reveal" style="transition-delay:240ms">
-            <span class="step-num font-display">03</span>
-            <span class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></svg></span>
-            <h3 class="step-title font-display">Receba na hora</h3>
-            <p class="step-desc">Suas moedas caem na conta em segundos, direto no seu perfil.</p>
-          </div>
-        </div>
-        <div class="guarantee-banner reveal">
-          <div style="font-size:80px;filter:drop-shadow(0 0 24px rgba(251,191,36,0.4));flex-shrink:0">&#129759;</div>
-          <div>
-            <p class="guarantee-label">Compra protegida</p>
-            <h3 class="guarantee-title font-display">30 dias de garantia</h3>
-            <p class="guarantee-desc">Compre com tranquilidade: sua compra conta com 30 dias de garantia e suporte para ajudar sempre que precisar.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="avaliacoes" class="reviews-section">
-      <div class="bg-dots"></div>
-      <div class="glow-blob glow-blob--reviews-top"></div>
-      <div class="glow-blob glow-blob--reviews-right"></div>
-      <div class="reviews-inner">
-        <div class="section-header">
-          <h2 class="section-title font-display">Aprovado pela galera</h2>
-          <p class="section-sub">Mais de 82 mil gamers ja recarregaram com a gente.</p>
-        </div>
-        <div class="reviews-grid">
-          <div class="review-wrap reveal" style="transition-delay:0ms">
-            <figure class="review-card">
-              <div class="stars"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
-              <blockquote class="review-text">"Comprei 35.500 VP e caiu na conta em menos de 1 minuto. Preco absurdo de bom."</blockquote>
-              <figcaption class="review-author">
-                <p class="review-name">Lucas "shadowFPS"</p>
-                <p class="review-game">Valorant</p>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="review-wrap reveal" style="transition-delay:120ms">
-            <figure class="review-card">
-              <div class="stars"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
-              <blockquote class="review-text">"Sempre recarrego meus diamantes aqui. Economizo mais da metade todo mes."</blockquote>
-              <figcaption class="review-author">
-                <p class="review-name">Mariana Alves</p>
-                <p class="review-game">Free Fire</p>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="review-wrap reveal" style="transition-delay:240ms">
-            <figure class="review-card">
-              <div class="stars"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
-              <blockquote class="review-text">"Achei que era bom demais pra ser verdade, mas os Robux entraram certinho. Recomendo!"</blockquote>
-              <figcaption class="review-author">
-                <p class="review-name">Pedro Nakamura</p>
-                <p class="review-game">Roblox</p>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="review-wrap reveal" style="transition-delay:360ms">
-            <figure class="review-card">
-              <div class="stars"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
-              <blockquote class="review-text">"Os V-Bucks chegaram rapido e o atendimento respondeu minhas duvidas na hora."</blockquote>
-              <figcaption class="review-author">
-                <p class="review-name">Ana Beatriz</p>
-                <p class="review-game">Fortnite</p>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="review-wrap reveal" style="transition-delay:480ms">
-            <figure class="review-card">
-              <div class="stars"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
-              <blockquote class="review-text">"Gemas com preco muito melhor que o oficial. Ja fiz varias compras e nunca tive problema."</blockquote>
-              <figcaption class="review-author">
-                <p class="review-name">Rafael Costa</p>
-                <p class="review-game">Brawl Stars</p>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="review-wrap reveal" style="transition-delay:600ms">
-            <figure class="review-card">
-              <div class="stars"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
-              <blockquote class="review-text">"Minecoins entregues sem complicacao. O processo e simples e seguro."</blockquote>
-              <figcaption class="review-author">
-                <p class="review-name">Joao Victor</p>
-                <p class="review-game">Minecraft</p>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="review-wrap reveal" style="transition-delay:720ms">
-            <figure class="review-card">
-              <div class="stars"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
-              <blockquote class="review-text">"Foi minha primeira compra e fiquei surpresa com a velocidade. Vou voltar com certeza."</blockquote>
-              <figcaption class="review-author">
-                <p class="review-name">Camila Souza</p>
-                <p class="review-game">Roblox</p>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="review-wrap reveal" style="transition-delay:840ms">
-            <figure class="review-card">
-              <div class="stars"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
-              <blockquote class="review-text">"Economizei bastante nos VP e recebi tudo exatamente como anunciado."</blockquote>
-              <figcaption class="review-author">
-                <p class="review-name">Gustavo Lima</p>
-                <p class="review-game">Valorant</p>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="review-wrap reveal" style="transition-delay:960ms">
-            <figure class="review-card">
-              <div class="stars"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
-              <blockquote class="review-text">"Diamantes entregues rapidinho. A loja ganhou mais uma cliente fiel."</blockquote>
-              <figcaption class="review-author">
-                <p class="review-name">Larissa Mendes</p>
-                <p class="review-game">Free Fire</p>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq" class="faq-section">
-      <div class="bg-grid"></div>
-      <div class="glow-blob glow-blob--faq-right"></div>
-      <div class="glow-blob glow-blob--faq-left"></div>
-      <div class="faq-inner">
-        <h2 class="section-title font-display text-center">Perguntas frequentes</h2>
-        <div class="faq-list">
-          <div class="faq-item faq-item--open">
-            <button class="faq-btn" aria-expanded="true" onclick="toggleFaq(this)">
-              <span>Como recebo minhas moedas?</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon faq-icon--open"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
-            <div class="faq-body faq-body--open"><p class="faq-text">Apos a confirmacao do pagamento, as moedas sao creditadas automaticamente na sua conta do jogo em poucos segundos. Voce recebe tambem um comprovante por e-mail.</p></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
-              <span>Por que os precos sao tao baixos?</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
-            <div class="faq-body"><p class="faq-text">Trabalhamos com fornecedores globais e compras em grande volume, o que nos permite repassar descontos de ate 90% em relacao ao preco oficial das lojas.</p></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
-              <span>E seguro? Minha conta pode ser banida?</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
-            <div class="faq-body"><p class="faq-text">Todas as recargas seguem metodos oficiais e seguros. Trabalhamos com pagamento criptografado e nunca pedimos sua senha do jogo.</p></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
-              <span>Quais formas de pagamento voces aceitam?</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
-            <div class="faq-body"><p class="faq-text">Aceitamos Pix (aprovacao instantanea), cartao de credito e boleto bancario.</p></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
-              <span>E se eu tiver algum problema?</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
-            <div class="faq-body"><p class="faq-text">Nosso suporte funciona 24/7. Fale com a gente pelo chat e resolvemos rapidinho, com garantia de reembolso caso a entrega nao seja concluida.</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-cols">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <span class="footer-logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><circle cx="12" cy="12" r="4"/></svg></span>
-            <span class="footer-logo-text font-display">Nitro<span class="text-gradient">Coins</span></span>
-          </div>
-          <p class="footer-desc">A recarga de moedas virtuais mais rapida e barata do Brasil. Entrega instantanea e suporte 24/7.</p>
-          <a href="mailto:suporte@nitrocoins.store" class="footer-email">suporte@nitrocoins.store</a>
-        </div>
-        <div class="footer-col">
-          <h4 class="footer-col-title font-display">Jogos</h4>
-          <ul class="footer-links">
-            <li><a href="roblox.html" class="footer-link">Robux - Roblox</a></li>
-            <li><a href="fortnite.html" class="footer-link">V-Bucks - Fortnite</a></li>
-            <li><a href="brawl-stars.html" class="footer-link">Gemas - Brawl Stars</a></li>
-            <li><a href="free-fire.html" class="footer-link">Diamantes - Free Fire</a></li>
-            <li><a href="valorant.html" class="footer-link">VP - Valorant</a></li>
-            <li><a href="minecraft.html" class="footer-link">Minecoins - Minecraft</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4 class="footer-col-title font-display">Suporte</h4>
-          <ul class="footer-links">
-            <li><a href="index.html#faq" class="footer-link">Perguntas frequentes</a></li>
-            <li><a href="mailto:suporte@nitrocoins.store" class="footer-link">Falar com suporte</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4 class="footer-col-title font-display">Legal</h4>
-          <ul class="footer-links">
-            <li><a href="#" class="footer-link">Politica de privacidade</a></li>
-            <li><a href="#" class="footer-link">Termos de uso</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">2026 NitroCoins. Todos os direitos reservados.</p>
-        <p class="footer-note">NitroCoins nao e afiliada a Roblox, Epic Games, Supercell, Garena, Riot Games ou Microsoft.</p>
-      </div>
-    </div>
-  </footer>
-</div>
-
-  <div id="cart-overlay" class="cart-overlay" onclick="closeCart()" style="display:none"></div>
-  <aside id="cart-drawer" class="cart-drawer">
-    <div class="cart-header">
-      <h2 class="cart-title font-display">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-        Carrinho
-      </h2>
-      <button class="cart-close" onclick="closeCart()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <a href="#" style="display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 12px;border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#e6edf3;text-decoration:none;font-size:13px;font-weight:500;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/></svg>
+        <span class="hide-mobile">Pedidos</span>
+      </a>
+      <button onclick="toggleCart()" style="position:relative;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;background:rgba(255,255,255,0.08);border:none;border-radius:12px;color:#e6edf3;font-size:13px;font-weight:500;cursor:pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> <span class="hide-mobile">Carrinho</span>
+        <span id="cart-badge" style="display:none;position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 4px;background:#6366f1;border-radius:999px;font-size:11px;font-weight:700;color:#fff;align-items:center;justify-content:center;">0</span>
+      </button>
+      <button onclick="toggleMobileNav()" style="display:flex;width:32px;height:32px;align-items:center;justify-content:center;background:transparent;border:none;color:#e6edf3;cursor:pointer;border-radius:12px;" class="mobile-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
       </button>
     </div>
-    <div id="cart-body" class="cart-body">
-      <div id="cart-empty" class="cart-empty">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-        <p>Seu carrinho esta vazio</p>
-        <a href="index.html#catalogo" class="cart-catalog-link" onclick="closeCart()">Ver catalogo</a>
-      </div>
-      <div id="cart-items" class="cart-items" style="display:none"></div>
+  </div>
+  <nav id="mobile-nav" style="display:none;border-top:1px solid rgba(255,255,255,0.08);background:rgba(13,17,23,0.97);backdrop-filter:blur(20px);">
+    <div style="max-width:1152px;margin:0 auto;padding:8px 16px 12px;display:flex;flex-direction:column;">
+      <a href="#catalogo" onclick="closeMobileNav()" style="padding:14px 12px;font-size:16px;font-weight:500;color:#8b949e;text-decoration:none;border-radius:12px;">Catálogo</a>
+      <a href="#como-funciona" onclick="closeMobileNav()" style="padding:14px 12px;font-size:16px;font-weight:500;color:#8b949e;text-decoration:none;border-radius:12px;">Como funciona</a>
+      <a href="#avaliacoes" onclick="closeMobileNav()" style="padding:14px 12px;font-size:16px;font-weight:500;color:#8b949e;text-decoration:none;border-radius:12px;">Avaliações</a>
+      <a href="#faq" onclick="closeMobileNav()" style="padding:14px 12px;font-size:16px;font-weight:500;color:#8b949e;text-decoration:none;border-radius:12px;">FAQ</a>
     </div>
-    <div id="cart-footer" class="cart-footer" style="display:none">
-      <div class="cart-total-row">
-        <span class="cart-total-label">Total</span>
-        <span class="cart-total-value font-display" id="cart-total">R$ 0,00</span>
-      </div>
-      <button class="btn-checkout" onclick="checkout()">Finalizar compra <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
-    </div>
-  </aside>
-  <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="whatsapp-btn">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-  </a>
-  <script src="app.js"></script>
+  </nav>
+</header>
 
-  <!-- BOTTOM CART BAR (mobile) -->
-  <div class="bottom-cart-bar" id="bottom-cart-bar">
-    <div class="bottom-cart-bar-info">
-      <div class="bottom-cart-bar-label">Carrinho</div>
-      <div class="bottom-cart-bar-total font-display" id="bottom-cart-total">R$ 0,00</div>
+<main>
+<!-- ── HERO / CAROUSEL ─────────────────────────────────────────────────────── -->
+<section id="top" style="position:relative;overflow:hidden;background:#0d1117;">
+  <div style="pointer-events:none;position:absolute;inset:0;background-image:radial-gradient(rgba(99,102,241,.18) 1.5px,transparent 1.5px);background-size:24px 24px;"></div>
+  <div style="pointer-events:none;position:absolute;left:-64px;top:40px;width:288px;height:288px;border-radius:50%;background:rgba(99,102,241,0.35);filter:blur(80px);"></div>
+  <div style="pointer-events:none;position:absolute;right:-40px;top:96px;width:320px;height:320px;border-radius:50%;background:rgba(56,189,248,0.25);filter:blur(80px);"></div>
+  <div style="position:relative;max-width:1152px;margin:0 auto;padding:16px 16px 24px;">
+    <p style="margin-bottom:20px;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.25em;color:#38bdf8;">Feito para gamers, por gamers</p>
+    <!-- Carousel -->
+    <div class="nc-carousel-wrap" id="carousel" role="region" aria-label="Destaques NitroCoins">
+      <div id="nc-track" class="nc-track" style="transform:translateX(0%);" ontouchstart="ncTouchStart(event)" ontouchmove="ncTouchMove(event)" ontouchend="ncTouchEnd(event)">
+        <div class="nc-slide"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_06_32-ixHx4lmCF4s8UCMoGsUydj8jGACQ5M.png" alt="Banners da NitroCoins com moedas virtuais de Roblox, Fortnite, Valorant, Brawl Stars e Minecraft" draggable="false" style="width:100%;height:100%;object-fit:cover;user-select:none;display:block;"/><a href="#catalogo" style="position:absolute;inset:0;display:block;"></a></div><div class="nc-slide"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_06_49-NCIpFcSJ2SExleKHS0zQgN9qXmfLlY.png" alt="Banners da NitroCoins com cartões de jogos e moedas virtuais" draggable="false" style="width:100%;height:100%;object-fit:cover;user-select:none;display:block;"/><a href="#catalogo" style="position:absolute;inset:0;display:block;"></a></div><div class="nc-slide"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_06_22-5N2nlCWDNywSROXlR6m2HdACQTU2fI.png" alt="Banners da NitroCoins com personagens e moedas de jogos" draggable="false" style="width:100%;height:100%;object-fit:cover;user-select:none;display:block;"/><a href="#catalogo" style="position:absolute;inset:0;display:block;"></a></div><div class="nc-slide"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_06_41-un3KWuBxiVO3mCPLu7bFUSwAMZefhP.png" alt="Banners da NitroCoins destacando compra segura e suporte" draggable="false" style="width:100%;height:100%;object-fit:cover;user-select:none;display:block;"/><a href="#catalogo" style="position:absolute;inset:0;display:block;"></a></div>
+      </div>
+      <button onclick="ncPrev()" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.25);background:rgba(13,17,23,0.7);color:#e6edf3;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button onclick="ncNext()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.25);background:rgba(13,17,23,0.7);color:#e6edf3;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;" id="nc-dots">
+        <button onclick="goSlide(0)" class="nc-dot" data-idx="0" aria-label="Slide 1" style="height:8px;border-radius:999px;border:none;cursor:pointer;transition:all .3s;background:#38bdf8;width:24px;padding:0;"></button><button onclick="goSlide(1)" class="nc-dot" data-idx="1" aria-label="Slide 2" style="height:8px;border-radius:999px;border:none;cursor:pointer;transition:all .3s;background:rgba(255,255,255,0.35);width:8px;padding:0;"></button><button onclick="goSlide(2)" class="nc-dot" data-idx="2" aria-label="Slide 3" style="height:8px;border-radius:999px;border:none;cursor:pointer;transition:all .3s;background:rgba(255,255,255,0.35);width:8px;padding:0;"></button><button onclick="goSlide(3)" class="nc-dot" data-idx="3" aria-label="Slide 4" style="height:8px;border-radius:999px;border:none;cursor:pointer;transition:all .3s;background:rgba(255,255,255,0.35);width:8px;padding:0;"></button>
+      </div>
     </div>
-    <button class="bottom-cart-bar-btn" onclick="toggleCart()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-      Ver carrinho
-      <span id="bottom-cart-count" style="background:rgba(255,255,255,0.25);padding:1px 7px;border-radius:999px;font-size:12px;display:none">0</span>
+    <!-- Trust bar (exactly like original) -->
+    <div style="margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:24px 32px;font-size:13px;color:#8b949e;">
+      <span style="display:inline-flex;align-items:center;gap:8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        Pagamento protegido
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>4,9/5
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+        +500 mil entregas
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ── CATALOG ──────────────────────────────────────────────────────────────── -->
+<section id="catalogo" style="position:relative;overflow:hidden;">
+  <div style="pointer-events:none;position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:40px 40px;"></div>
+  <div style="pointer-events:none;position:absolute;right:0;top:96px;width:320px;height:320px;border-radius:50%;background:rgba(99,102,241,0.2);filter:blur(80px);"></div>
+  <div style="pointer-events:none;position:absolute;left:-80px;bottom:40px;width:288px;height:288px;border-radius:50%;background:rgba(56,189,248,0.2);filter:blur(80px);"></div>
+  <div style="position:relative;max-width:1152px;margin:0 auto;padding:32px 16px 40px;">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,5vw,36px);font-weight:700;letter-spacing:-.02em;">Escolha seu próximo item</h2>
+    <div style="margin-top:28px;display:grid;grid-template-columns:1fr;gap:20px;" class="grid-3">
+      
+      <a href="roblox.html" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);aspect-ratio:4/3;text-decoration:none;transition:transform .3s,border-color .3s,box-shadow .3s;" class="cat-card" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.6)';this.style.boxShadow='0 20px 40px rgba(99,102,241,0.25)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)';this.style.boxShadow=''">
+        <img src="categories/roblox.webp" alt="Cena de Roblox" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s;" onerror="this.style.display='none'"/>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,1) 0%,rgba(13,17,23,0.4) 50%,transparent 100%);"></span>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(99,102,241,0.2),transparent);transform:translateX(-100%);transition:transform .7s;" class="cat-shimmer"></span>
+        <div style="position:relative;z-index:10;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:20px;">
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#8b949e;">Roblox</p>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,5vw,36px);font-weight:700;letter-spacing:-.02em;color:#e6edf3;line-height:1;">Robux</h3>
+            <p style="margin-top:4px;font-size:14px;font-weight:500;color:#8b949e;">a partir de <span style="font-weight:700;background:linear-gradient(90deg,#38bdf8,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">R$ 14,99</span></p>
+          </div>
+          <span style="flex-shrink:0;display:flex;align-items:center;gap:6px;padding:12px 20px;background:#6366f1;border-radius:999px;font-size:14px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);transition:transform .3s;" class="cat-pill">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        </div>
+      </a>
+      <a href="fortnite.html" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);aspect-ratio:4/3;text-decoration:none;transition:transform .3s,border-color .3s,box-shadow .3s;" class="cat-card" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.6)';this.style.boxShadow='0 20px 40px rgba(99,102,241,0.25)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)';this.style.boxShadow=''">
+        <img src="categories/fortnite.webp" alt="Cena de Fortnite" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s;" onerror="this.style.display='none'"/>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,1) 0%,rgba(13,17,23,0.4) 50%,transparent 100%);"></span>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(99,102,241,0.2),transparent);transform:translateX(-100%);transition:transform .7s;" class="cat-shimmer"></span>
+        <div style="position:relative;z-index:10;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:20px;">
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#8b949e;">Fortnite</p>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,5vw,36px);font-weight:700;letter-spacing:-.02em;color:#e6edf3;line-height:1;">V-Bucks</h3>
+            <p style="margin-top:4px;font-size:14px;font-weight:500;color:#8b949e;">a partir de <span style="font-weight:700;background:linear-gradient(90deg,#38bdf8,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">R$ 18,99</span></p>
+          </div>
+          <span style="flex-shrink:0;display:flex;align-items:center;gap:6px;padding:12px 20px;background:#6366f1;border-radius:999px;font-size:14px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);transition:transform .3s;" class="cat-pill">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        </div>
+      </a>
+      <a href="brawl-stars.html" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);aspect-ratio:4/3;text-decoration:none;transition:transform .3s,border-color .3s,box-shadow .3s;" class="cat-card" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.6)';this.style.boxShadow='0 20px 40px rgba(99,102,241,0.25)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)';this.style.boxShadow=''">
+        <img src="categories/brawl-stars.webp" alt="Cena de Brawl Stars" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s;" onerror="this.style.display='none'"/>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,1) 0%,rgba(13,17,23,0.4) 50%,transparent 100%);"></span>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(99,102,241,0.2),transparent);transform:translateX(-100%);transition:transform .7s;" class="cat-shimmer"></span>
+        <div style="position:relative;z-index:10;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:20px;">
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#8b949e;">Brawl Stars</p>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,5vw,36px);font-weight:700;letter-spacing:-.02em;color:#e6edf3;line-height:1;">Gemas</h3>
+            <p style="margin-top:4px;font-size:14px;font-weight:500;color:#8b949e;">a partir de <span style="font-weight:700;background:linear-gradient(90deg,#38bdf8,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">R$ 10,99</span></p>
+          </div>
+          <span style="flex-shrink:0;display:flex;align-items:center;gap:6px;padding:12px 20px;background:#6366f1;border-radius:999px;font-size:14px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);transition:transform .3s;" class="cat-pill">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        </div>
+      </a>
+      <a href="free-fire.html" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);aspect-ratio:4/3;text-decoration:none;transition:transform .3s,border-color .3s,box-shadow .3s;" class="cat-card" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.6)';this.style.boxShadow='0 20px 40px rgba(99,102,241,0.25)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)';this.style.boxShadow=''">
+        <img src="categories/free-fire.webp" alt="Cena de Free Fire" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s;" onerror="this.style.display='none'"/>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,1) 0%,rgba(13,17,23,0.4) 50%,transparent 100%);"></span>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(99,102,241,0.2),transparent);transform:translateX(-100%);transition:transform .7s;" class="cat-shimmer"></span>
+        <div style="position:relative;z-index:10;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:20px;">
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#8b949e;">Free Fire</p>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,5vw,36px);font-weight:700;letter-spacing:-.02em;color:#e6edf3;line-height:1;">Diamantes</h3>
+            <p style="margin-top:4px;font-size:14px;font-weight:500;color:#8b949e;">a partir de <span style="font-weight:700;background:linear-gradient(90deg,#38bdf8,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">R$ 15,99</span></p>
+          </div>
+          <span style="flex-shrink:0;display:flex;align-items:center;gap:6px;padding:12px 20px;background:#6366f1;border-radius:999px;font-size:14px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);transition:transform .3s;" class="cat-pill">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        </div>
+      </a>
+      <a href="valorant.html" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);aspect-ratio:4/3;text-decoration:none;transition:transform .3s,border-color .3s,box-shadow .3s;" class="cat-card" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.6)';this.style.boxShadow='0 20px 40px rgba(99,102,241,0.25)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)';this.style.boxShadow=''">
+        <img src="categories/valorant.webp" alt="Cena de Valorant" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s;" onerror="this.style.display='none'"/>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,1) 0%,rgba(13,17,23,0.4) 50%,transparent 100%);"></span>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(99,102,241,0.2),transparent);transform:translateX(-100%);transition:transform .7s;" class="cat-shimmer"></span>
+        <div style="position:relative;z-index:10;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:20px;">
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#8b949e;">Valorant</p>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,5vw,36px);font-weight:700;letter-spacing:-.02em;color:#e6edf3;line-height:1;">VP</h3>
+            <p style="margin-top:4px;font-size:14px;font-weight:500;color:#8b949e;">a partir de <span style="font-weight:700;background:linear-gradient(90deg,#38bdf8,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">R$ 15,99</span></p>
+          </div>
+          <span style="flex-shrink:0;display:flex;align-items:center;gap:6px;padding:12px 20px;background:#6366f1;border-radius:999px;font-size:14px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);transition:transform .3s;" class="cat-pill">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        </div>
+      </a>
+      <a href="minecraft.html" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);aspect-ratio:4/3;text-decoration:none;transition:transform .3s,border-color .3s,box-shadow .3s;" class="cat-card" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.6)';this.style.boxShadow='0 20px 40px rgba(99,102,241,0.25)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)';this.style.boxShadow=''">
+        <img src="categories/minecraft.webp" alt="Cena de Minecraft" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s;" onerror="this.style.display='none'"/>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,23,1) 0%,rgba(13,17,23,0.4) 50%,transparent 100%);"></span>
+        <span style="pointer-events:none;position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(99,102,241,0.2),transparent);transform:translateX(-100%);transition:transform .7s;" class="cat-shimmer"></span>
+        <div style="position:relative;z-index:10;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:20px;">
+          <div>
+            <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#8b949e;">Minecraft</p>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,5vw,36px);font-weight:700;letter-spacing:-.02em;color:#e6edf3;line-height:1;">Minecoins</h3>
+            <p style="margin-top:4px;font-size:14px;font-weight:500;color:#8b949e;">a partir de <span style="font-weight:700;background:linear-gradient(90deg,#38bdf8,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">R$ 13,99</span></p>
+          </div>
+          <span style="flex-shrink:0;display:flex;align-items:center;gap:6px;padding:12px 20px;background:#6366f1;border-radius:999px;font-size:14px;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.4);transition:transform .3s;" class="cat-pill">Ver ofertas <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMO FUNCIONA ────────────────────────────────────────────────────────── -->
+<section id="como-funciona" style="position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(22,27,34,0.5);">
+  <div style="pointer-events:none;position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:40px 40px;"></div>
+  <div style="position:relative;max-width:1152px;margin:0 auto;padding:40px 16px 48px;">
+    <div style="max-width:640px;margin:0 auto;text-align:center;">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,5vw,36px);font-weight:700;letter-spacing:-.02em;">Simples como apertar start</h2>
+      <p style="margin-top:8px;color:#8b949e;">Três passos e você já está de volta ao jogo.</p>
+    </div>
+    <div style="margin-top:28px;display:grid;gap:16px;" class="steps-grid">
+      <div style="padding:20px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#0d1117;" class="step-card">
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:rgba(255,255,255,0.2);">01</span>
+        <span style="margin-top:12px;display:flex;width:48px;height:48px;align-items:center;justify-content:center;border-radius:12px;background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(99,102,241,.15));color:#38bdf8;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
+        </span>
+        <h3 style="margin-top:16px;font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;">Escolha seu game</h3>
+        <p style="margin-top:4px;font-size:13px;line-height:1.65;color:#8b949e;">Selecione o jogo e o pacote de moedas que você quer recarregar.</p>
+      </div>
+      <div style="padding:20px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#0d1117;" class="step-card">
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:rgba(255,255,255,0.2);">02</span>
+        <span style="margin-top:12px;display:flex;width:48px;height:48px;align-items:center;justify-content:center;border-radius:12px;background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(99,102,241,.15));color:#38bdf8;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+        </span>
+        <h3 style="margin-top:16px;font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;">Pague com segurança</h3>
+        <p style="margin-top:4px;font-size:13px;line-height:1.65;color:#8b949e;">Pix, cartão ou boleto. Ambiente 100% protegido e criptografado.</p>
+      </div>
+      <div style="padding:20px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#0d1117;" class="step-card">
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:rgba(255,255,255,0.2);">03</span>
+        <span style="margin-top:12px;display:flex;width:48px;height:48px;align-items:center;justify-content:center;border-radius:12px;background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(99,102,241,.15));color:#38bdf8;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></svg>
+        </span>
+        <h3 style="margin-top:16px;font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;">Receba na hora</h3>
+        <p style="margin-top:4px;font-size:13px;line-height:1.65;color:#8b949e;">Suas moedas caem na conta em segundos, direto no seu perfil.</p>
+      </div>
+    </div>
+    <!-- Garantia banner (exactly like original) -->
+    <div style="margin-top:28px;display:flex;gap:24px;padding:24px;border-radius:24px;border:1px solid rgba(245,158,11,0.3);background:linear-gradient(105deg,rgba(245,158,11,0.1),rgba(13,17,23,1) 50%,rgba(99,102,241,0.1));" class="guarantee-inner">
+      <img src="garantia-30-dias.webp" alt="Selo de garantia de 30 dias" style="width:112px;height:112px;object-fit:contain;filter:drop-shadow(0 0 24px rgba(251,191,36,0.3));flex-shrink:0;" onerror="this.style.display='none'"/>
+      <div>
+        <p style="font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#fbbf24;">COMPRA PROTEGIDA</p>
+        <h3 style="margin-top:8px;font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,4vw,28px);font-weight:700;">30 dias de garantia</h3>
+        <p style="margin-top:8px;color:#8b949e;line-height:1.7;font-size:14px;">Compre com tranquilidade: sua compra conta com 30 dias de garantia e suporte para ajudar sempre que precisar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AVALIAÇÕES ───────────────────────────────────────────────────────────── -->
+<section id="avaliacoes" style="position:relative;overflow:hidden;">
+  <div style="pointer-events:none;position:absolute;inset:0;background-image:radial-gradient(rgba(99,102,241,.15) 1.5px,transparent 1.5px);background-size:24px 24px;"></div>
+  <div style="position:relative;max-width:1152px;margin:0 auto;padding:64px 16px;">
+    <div style="max-width:640px;margin:0 auto;text-align:center;">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,5vw,36px);font-weight:700;letter-spacing:-.02em;">Aprovado pela galera</h2>
+      <p style="margin-top:8px;color:#8b949e;">Mais de 82 mil gamers já recarregaram com a gente.</p>
+    </div>
+    <div style="margin-top:40px;display:grid;gap:16px;" class="reviews-grid">
+      <figure style="display:flex;flex-direction:column;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#161b22;transition:transform .3s,border-color .3s;" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.4)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)'">
+  <div style="display:flex;gap:2px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
+  <blockquote style="margin-top:16px;flex:1;font-size:14px;line-height:1.7;color:rgba(230,237,243,0.9);">"Comprei 35.500 VP e caiu na conta em menos de 1 minuto. Preço absurdo de bom."</blockquote>
+  <figcaption style="margin-top:16px;">
+    <p style="font-weight:600;font-size:13px;">Lucas "shadowFPS"</p>
+    <p style="font-size:12px;color:#38bdf8;margin-top:2px;">Valorant</p>
+  </figcaption>
+</figure><figure style="display:flex;flex-direction:column;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#161b22;transition:transform .3s,border-color .3s;" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.4)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)'">
+  <div style="display:flex;gap:2px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
+  <blockquote style="margin-top:16px;flex:1;font-size:14px;line-height:1.7;color:rgba(230,237,243,0.9);">"Sempre recarrego meus diamantes aqui. Economizo mais da metade todo mês."</blockquote>
+  <figcaption style="margin-top:16px;">
+    <p style="font-weight:600;font-size:13px;">Mariana Alves</p>
+    <p style="font-size:12px;color:#38bdf8;margin-top:2px;">Free Fire</p>
+  </figcaption>
+</figure><figure style="display:flex;flex-direction:column;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#161b22;transition:transform .3s,border-color .3s;" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.4)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)'">
+  <div style="display:flex;gap:2px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
+  <blockquote style="margin-top:16px;flex:1;font-size:14px;line-height:1.7;color:rgba(230,237,243,0.9);">"Achei que era bom demais pra ser verdade, mas os Robux entraram certinho. Recomendo!"</blockquote>
+  <figcaption style="margin-top:16px;">
+    <p style="font-weight:600;font-size:13px;">Pedro Nakamura</p>
+    <p style="font-size:12px;color:#38bdf8;margin-top:2px;">Roblox</p>
+  </figcaption>
+</figure><figure style="display:flex;flex-direction:column;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#161b22;transition:transform .3s,border-color .3s;" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.4)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)'">
+  <div style="display:flex;gap:2px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
+  <blockquote style="margin-top:16px;flex:1;font-size:14px;line-height:1.7;color:rgba(230,237,243,0.9);">"Os V-Bucks chegaram rápido e o atendimento respondeu minhas dúvidas na hora."</blockquote>
+  <figcaption style="margin-top:16px;">
+    <p style="font-weight:600;font-size:13px;">Ana Beatriz</p>
+    <p style="font-size:12px;color:#38bdf8;margin-top:2px;">Fortnite</p>
+  </figcaption>
+</figure><figure style="display:flex;flex-direction:column;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#161b22;transition:transform .3s,border-color .3s;" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.4)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)'">
+  <div style="display:flex;gap:2px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
+  <blockquote style="margin-top:16px;flex:1;font-size:14px;line-height:1.7;color:rgba(230,237,243,0.9);">"Gemas com preço muito melhor que o oficial. Já fiz várias compras e nunca tive problema."</blockquote>
+  <figcaption style="margin-top:16px;">
+    <p style="font-weight:600;font-size:13px;">Rafael Costa</p>
+    <p style="font-size:12px;color:#38bdf8;margin-top:2px;">Brawl Stars</p>
+  </figcaption>
+</figure><figure style="display:flex;flex-direction:column;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#161b22;transition:transform .3s,border-color .3s;" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.4)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)'">
+  <div style="display:flex;gap:2px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
+  <blockquote style="margin-top:16px;flex:1;font-size:14px;line-height:1.7;color:rgba(230,237,243,0.9);">"Minecoins entregues sem complicação. O processo é simples e seguro."</blockquote>
+  <figcaption style="margin-top:16px;">
+    <p style="font-weight:600;font-size:13px;">João Victor</p>
+    <p style="font-size:12px;color:#38bdf8;margin-top:2px;">Minecraft</p>
+  </figcaption>
+</figure><figure style="display:flex;flex-direction:column;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#161b22;transition:transform .3s,border-color .3s;" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.4)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)'">
+  <div style="display:flex;gap:2px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
+  <blockquote style="margin-top:16px;flex:1;font-size:14px;line-height:1.7;color:rgba(230,237,243,0.9);">"Foi minha primeira compra e fiquei surpresa com a velocidade. Vou voltar com certeza."</blockquote>
+  <figcaption style="margin-top:16px;">
+    <p style="font-weight:600;font-size:13px;">Camila Souza</p>
+    <p style="font-size:12px;color:#38bdf8;margin-top:2px;">Roblox</p>
+  </figcaption>
+</figure><figure style="display:flex;flex-direction:column;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#161b22;transition:transform .3s,border-color .3s;" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.4)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)'">
+  <div style="display:flex;gap:2px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
+  <blockquote style="margin-top:16px;flex:1;font-size:14px;line-height:1.7;color:rgba(230,237,243,0.9);">"Economizei bastante nos VP e recebi tudo exatamente como anunciado."</blockquote>
+  <figcaption style="margin-top:16px;">
+    <p style="font-weight:600;font-size:13px;">Gustavo Lima</p>
+    <p style="font-size:12px;color:#38bdf8;margin-top:2px;">Valorant</p>
+  </figcaption>
+</figure><figure style="display:flex;flex-direction:column;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#161b22;transition:transform .3s,border-color .3s;" onmouseenter="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(99,102,241,0.4)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(255,255,255,0.08)'">
+  <div style="display:flex;gap:2px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:#38bdf8;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div>
+  <blockquote style="margin-top:16px;flex:1;font-size:14px;line-height:1.7;color:rgba(230,237,243,0.9);">"Diamantes entregues rapidinho. A loja ganhou mais uma cliente fiel."</blockquote>
+  <figcaption style="margin-top:16px;">
+    <p style="font-weight:600;font-size:13px;">Larissa Mendes</p>
+    <p style="font-size:12px;color:#38bdf8;margin-top:2px;">Free Fire</p>
+  </figcaption>
+</figure>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ──────────────────────────────────────────────────────────────────── -->
+<section id="faq" style="position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,0.08);background:rgba(22,27,34,0.4);">
+  <div style="position:relative;max-width:768px;margin:0 auto;padding:64px 16px;">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,5vw,36px);font-weight:700;letter-spacing:-.02em;text-align:center;">Perguntas frequentes</h2>
+    <div style="margin-top:32px;display:flex;flex-direction:column;gap:12px;"><div style="overflow:hidden;border-radius:16px;border:1px solid rgba(99,102,241,0.3);background:#0d1117;" class="faq-item faq-open">
+  <button onclick="toggleFaq(this)" style="display:flex;width:100%;align-items:center;justify-content:space-between;gap:12px;padding:18px 16px;background:transparent;border:none;color:#e6edf3;font-size:15px;font-weight:500;cursor:pointer;text-align:left;min-height:56px;">
+    <span>Como recebo minhas moedas?</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" style="flex-shrink:0;transition:transform .3s;transform:rotate(180deg)"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+  <div style="max-height:300px;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1);">
+    <p style="padding:0 16px 18px;font-size:14px;line-height:1.7;color:#8b949e;">Após a confirmação do pagamento, as moedas são creditadas automaticamente na sua conta do jogo em poucos segundos. Você recebe também um comprovante por e-mail.</p>
+  </div>
+</div><div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#0d1117;" class="faq-item ">
+  <button onclick="toggleFaq(this)" style="display:flex;width:100%;align-items:center;justify-content:space-between;gap:12px;padding:18px 16px;background:transparent;border:none;color:#e6edf3;font-size:15px;font-weight:500;cursor:pointer;text-align:left;min-height:56px;">
+    <span>Por que os preços são tão baixos?</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" style="flex-shrink:0;transition:transform .3s;"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+  <div style="max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1);">
+    <p style="padding:0 16px 18px;font-size:14px;line-height:1.7;color:#8b949e;">Trabalhamos com fornecedores globais e compras em grande volume, o que nos permite repassar descontos de até 97% em relação ao preço oficial das lojas.</p>
+  </div>
+</div><div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#0d1117;" class="faq-item ">
+  <button onclick="toggleFaq(this)" style="display:flex;width:100%;align-items:center;justify-content:space-between;gap:12px;padding:18px 16px;background:transparent;border:none;color:#e6edf3;font-size:15px;font-weight:500;cursor:pointer;text-align:left;min-height:56px;">
+    <span>É seguro? Minha conta pode ser banida?</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" style="flex-shrink:0;transition:transform .3s;"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+  <div style="max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1);">
+    <p style="padding:0 16px 18px;font-size:14px;line-height:1.7;color:#8b949e;">Todas as recargas seguem métodos oficiais e seguros. Trabalhamos com pagamento criptografado e nunca pedimos sua senha do jogo.</p>
+  </div>
+</div><div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#0d1117;" class="faq-item ">
+  <button onclick="toggleFaq(this)" style="display:flex;width:100%;align-items:center;justify-content:space-between;gap:12px;padding:18px 16px;background:transparent;border:none;color:#e6edf3;font-size:15px;font-weight:500;cursor:pointer;text-align:left;min-height:56px;">
+    <span>Quais formas de pagamento vocês aceitam?</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" style="flex-shrink:0;transition:transform .3s;"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+  <div style="max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1);">
+    <p style="padding:0 16px 18px;font-size:14px;line-height:1.7;color:#8b949e;">Aceitamos Pix (aprovação instantânea), cartão de crédito e boleto bancário.</p>
+  </div>
+</div><div style="overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:#0d1117;" class="faq-item ">
+  <button onclick="toggleFaq(this)" style="display:flex;width:100%;align-items:center;justify-content:space-between;gap:12px;padding:18px 16px;background:transparent;border:none;color:#e6edf3;font-size:15px;font-weight:500;cursor:pointer;text-align:left;min-height:56px;">
+    <span>E se eu tiver algum problema?</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" style="flex-shrink:0;transition:transform .3s;"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+  <div style="max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1);">
+    <p style="padding:0 16px 18px;font-size:14px;line-height:1.7;color:#8b949e;">Nosso suporte funciona 24/7. Fale com a gente pelo chat e resolvemos rapidinho, com garantia de reembolso caso a entrega não seja concluída.</p>
+  </div>
+</div></div>
+  </div>
+</section>
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────────────── -->
+<footer style="border-top:1px solid rgba(255,255,255,0.08);background:#0d1117;">
+  <div style="max-width:1152px;margin:0 auto;padding:48px 16px;">
+    <div style="display:grid;gap:32px;" class="footer-cols">
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:linear-gradient(135deg,#38bdf8,#6366f1);color:#fff;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><circle cx="12" cy="12" r="4"/></svg>
+          </span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;">Nitro<span style="background:linear-gradient(90deg,#38bdf8,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Coins</span></span>
+        </div>
+        <p style="margin-top:12px;font-size:13px;line-height:1.7;color:#8b949e;max-width:300px;">A recarga de moedas virtuais mais rápida e barata do Brasil. Entrega instantânea e suporte 24/7.</p>
+        <a href="mailto:suporte@nitrocoins.store" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:#8b949e;text-decoration:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+          suporte@nitrocoins.store
+        </a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+        <div>
+          <h4 style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;margin-bottom:12px;">Loja</h4>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="#catalogo" style="font-size:13px;color:#8b949e;text-decoration:none;">Catálogo</a>
+            <a href="#como-funciona" style="font-size:13px;color:#8b949e;text-decoration:none;">Como funciona</a>
+            <a href="#avaliacoes" style="font-size:13px;color:#8b949e;text-decoration:none;">Avaliações</a>
+            <a href="#faq" style="font-size:13px;color:#8b949e;text-decoration:none;">FAQ</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;margin-bottom:12px;">Suporte</h4>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="mailto:suporte@nitrocoins.store" style="font-size:13px;color:#8b949e;text-decoration:none;">Contato</a>
+            <a href="#faq" style="font-size:13px;color:#8b949e;text-decoration:none;">Central de ajuda</a>
+            <a href="#" style="font-size:13px;color:#8b949e;text-decoration:none;">Reembolso</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;margin-bottom:12px;">Legal</h4>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="#" style="font-size:13px;color:#8b949e;text-decoration:none;">Termos de uso</a>
+            <a href="#" style="font-size:13px;color:#8b949e;text-decoration:none;">Privacidade</a>
+            <a href="#" style="font-size:13px;color:#8b949e;text-decoration:none;">Reembolso</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+        <p style="font-size:13px;color:#8b949e;">© 2026 NitroCoins. Todos os direitos reservados.</p>
+        <p style="font-size:13px;color:#8b949e;">Feito para gamers, por gamers.</p>
+      </div>
+      <p style="font-size:11px;color:#6e7681;">NitroCoins - CNPJ 09.376.495/0001-22. Loja independente, sem vínculo ou afiliação oficial com os detentores das marcas dos jogos citados. Todas as marcas pertencem aos seus respectivos titulares.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ── CART DRAWER ──────────────────────────────────────────────────────────── -->
+<div id="cart-overlay" onclick="closeCart()" style="display:none;position:fixed;inset:0;z-index:50;background:rgba(0,0,0,0.65);backdrop-filter:blur(4px);"></div>
+<aside id="cart-drawer" role="dialog" aria-label="Carrinho de compras" style="position:fixed;top:0;right:-100vw;width:100vw;max-width:420px;height:100dvh;z-index:51;background:#161b22;border-left:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;transition:right .3s cubic-bezier(.25,.46,.45,.94);box-shadow:-8px 0 40px rgba(0,0,0,0.5);">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.08);">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;color:#38bdf8;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> Seu carrinho</h2>
+    <button onclick="closeCart()" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.06);border:none;border-radius:8px;color:#e6edf3;cursor:pointer;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
     </button>
   </div>
+  <div id="cart-body" style="flex:1;overflow-y:auto;padding:14px 16px;-webkit-overflow-scrolling:touch;"></div>
+  <div id="cart-footer" style="display:none;padding:14px 16px;border-top:1px solid rgba(255,255,255,0.08);"></div>
+</aside>
+
+<!-- ── WHATSAPP + SUPORTE ───────────────────────────────────────────────────── -->
+<div style="position:fixed;bottom:80px;right:16px;z-index:38;display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+  <span style="display:flex;align-items:center;gap:8px;padding:6px 12px;background:rgba(13,17,23,0.92);border:1px solid rgba(56,189,248,0.3);border-radius:999px;backdrop-filter:blur(8px);">
+    <span style="width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;box-shadow:0 0 10px rgba(34,197,94,0.8);"></span>
+    <span style="font-size:12px;font-weight:600;color:#e6edf3;">Suporte online</span>
+  </span>
+  <a href="https://wa.me/5511999999999" target="_blank" style="width:56px;height:56px;background:#25d366;border-radius:9999px;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,0.45);">
+    <img src="whatsapp-logo.png" alt="WhatsApp" style="width:30px;height:30px;object-fit:contain;" onerror="this.outerHTML='<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;30&quot; height=&quot;30&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;white&quot;><path d=&quot;M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z&quot;/></svg>'"/>
+  </a>
+</div>
+
+<!-- BOTTOM CART BAR -->
+<div id="bottom-cart-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:39;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(22,27,34,0.98);backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,0.08);align-items:center;gap:10px;">
+  <div style="flex:1;">
+    <div style="font-size:11px;color:#8b949e;font-weight:500;">Carrinho</div>
+    <div id="bottom-cart-total" style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;">R$ 0,00</div>
+  </div>
+  <button onclick="toggleCart()" style="display:flex;align-items:center;gap:8px;padding:0 20px;height:46px;background:#6366f1;border:none;border-radius:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> Ver carrinho
+    <span id="bottom-cart-count" style="display:none;background:rgba(255,255,255,0.25);padding:1px 7px;border-radius:999px;font-size:12px;"></span>
+  </button>
+</div>
+
+<script src="app.js"></script>
+<script>
+// ── CAROUSEL ─────────────────────────────────────────────────────────────────
+let ncIdx = 0;
+const NC_TOTAL = 4;
+let ncAutoTimer;
+let ncTouchX = 0;
+
+function goSlide(n) {
+  ncIdx = (n + NC_TOTAL) % NC_TOTAL;
+  document.getElementById('nc-track').style.transform = `translateX(-${ncIdx * 100}%)`;
+  document.querySelectorAll('.nc-dot').forEach((d,i) => {
+    if (i === ncIdx) { d.style.width='24px'; d.style.background='#38bdf8'; }
+    else { d.style.width='8px'; d.style.background='rgba(255,255,255,0.35)'; }
+  });
+  resetAuto();
+}
+function ncNext() { goSlide(ncIdx + 1); }
+function ncPrev() { goSlide(ncIdx - 1); }
+function resetAuto() {
+  clearInterval(ncAutoTimer);
+  ncAutoTimer = setInterval(() => ncNext(), 4500);
+}
+function ncTouchStart(e) { ncTouchX = e.touches[0].clientX; }
+function ncTouchMove(e) { e.preventDefault(); }
+function ncTouchEnd(e) {
+  const dx = e.changedTouches[0].clientX - ncTouchX;
+  if (Math.abs(dx) > 40) { dx < 0 ? ncNext() : ncPrev(); }
+}
+resetAuto();
+
+// ── FAQ ───────────────────────────────────────────────────────────────────────
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const body = btn.nextElementSibling;
+  const icon = btn.querySelector('svg');
+  const isOpen = item.classList.contains('faq-open');
+  document.querySelectorAll('.faq-item.faq-open').forEach(el => {
+    el.classList.remove('faq-open');
+    el.style.borderColor = 'rgba(255,255,255,0.08)';
+    el.querySelector('button').nextElementSibling.style.maxHeight = '0';
+    el.querySelector('svg').style.transform = '';
+  });
+  if (!isOpen) {
+    item.classList.add('faq-open');
+    item.style.borderColor = 'rgba(99,102,241,0.3)';
+    body.style.maxHeight = '400px';
+    icon.style.transform = 'rotate(180deg)';
+  }
+}
+</script>
 </body>
 </html>
