@@ -363,7 +363,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#0d1117;color:#e6ed
 function getCart() { return JSON.parse(localStorage.getItem('nc_cart') || '[]'); }
 function saveCart(c) { localStorage.setItem('nc_cart', JSON.stringify(c)); }
 function formatBRL(n) { return 'R$ ' + n.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
-function getTotal() { return getCart().reduce((s,i) => s + i.price * i.qty, 0); }
+function getTotal() { return getCart().reduce((s,i) => s + i.price * i.quantity, 0); }
 
 let deliveryMode = null;
 
@@ -371,7 +371,7 @@ let deliveryMode = null;
 document.addEventListener('DOMContentLoaded', () => {
   const cart = getCart();
   const badge = document.getElementById('cart-badge');
-  const count = cart.reduce((s,i) => s+i.qty, 0);
+  const count = cart.reduce((s,i) => s+i.quantity, 0);
   if (badge && count > 0) { badge.textContent = count; badge.style.display = 'inline-flex'; }
 
   if (cart.length === 0) {
