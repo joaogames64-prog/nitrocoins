@@ -1,13 +1,11 @@
 // api/webhook-masterfy.js — Recebe webhook da Masterfy e dispara sale.approved no LowTrack
-// Configurado como notificationUrl na criação do PIX
 
 const { sendToLowtrack } = require('./lowtrack');
 
-// Set para evitar duplicatas
 const processedIds = new Set();
 
 module.exports = async function handler(req, res) {
-  // Responde 200 imediatamente (evita que a Masterfy reenvie desnecessariamente)
+  // Responde 200 imediatamente à Masterfy
   res.status(200).json({ received: true });
 
   if (req.method !== 'POST') return;
@@ -30,9 +28,14 @@ module.exports = async function handler(req, res) {
     console.log(`[webhook-masterfy] ${charge.id} → ${charge.status}`);
 
     if (charge.status === 'PAID') {
-      await sendToLowtrack('sale.approved', charge, {
+      sendToLowtrack('sale.approved', charge, {
         product_id: charge.externalRef || charge.id,
-        tracking:   {},
+        items: [{
+          name:     charge.description || 'NitroCoins',
+          quantity: 1,
+          price:    (charge.amount || 0) / 100,
+        }],
+        tracking: {},
       });
     }
 
