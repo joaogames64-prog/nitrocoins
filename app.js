@@ -17,27 +17,39 @@ function formatBRL(n) {
 function getSubtotal() {
   return getCart().reduce((s, i) => s + i.price * i.quantity, 0);
 }
+// Savings not applicable without real originalPrice — return 0 to avoid NaN
 function getSavings() {
-  return getCart().reduce((s, i) => s + ((i.originalPrice || i.price * 5) - i.price) * i.quantity, 0);
+  return 0;
 }
 function getCount() {
   return getCart().reduce((s, i) => s + i.quantity, 0);
 }
 
-// ── Add to Cart (called from game pages) ─────────────────────────────────────
-function addToCart(id, amount, game, price, originalPrice, image) {
+// ── Derive category image from game name ──────────────────────────────────────
+function gameImage(game) {
+  if (!game) return 'categories/roblox.webp';
+  const slug = game.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
+  return 'categories/' + slug + '.webp';
+}
+
+// ── Add to Cart ──────────────────────────────────────────────────────────────
+// Called from game pages as: addToCart(id, amount, game, price, icon)
+// 5th param is an emoji/letter icon — NOT originalPrice, NOT image
+function addToCart(id, amount, game, price, _icon) {
   let cart = getCart();
   const existing = cart.find(i => i.id === id);
   if (existing) {
     existing.quantity += 1;
   } else {
-    cart.push({ id, amount, game, price, originalPrice: originalPrice || price * 5, image, quantity: 1 });
+    // Derive image from game name (category image)
+    const image = gameImage(game);
+    cart.push({ id, amount, game, price, image, quantity: 1 });
   }
   saveCart(cart);
   updateBadge();
   updateBottomBar();
   openCart();
-  showToast(amount + ' adicionado ao carrinho!');
+  showToast(amount + ' adicionado!');
 }
 
 // ── Update Quantity ───────────────────────────────────────────────────────────
@@ -116,10 +128,10 @@ function renderCartDrawer() {
   body.innerHTML = `<ul style="display:flex;flex-direction:column;gap:12px;padding:16px 20px;">
     ${cart.map(item => `
       <li style="display:flex;gap:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:#0d1117;padding:12px;">
-        <img src="${item.image || 'products/robux-01.webp'}"
+        <img src="${item.image}"
              alt=""
              style="width:64px;height:64px;flex-shrink:0;border-radius:10px;background:rgba(255,255,255,0.06);object-fit:cover;"
-             onerror="this.src='categories/${(item.game||'roblox').toLowerCase().replace(/ /g,'-')}.webp'"/>
+             onerror="this.src='${gameImage(item.game)}'"/>
         <div style="display:flex;flex:1;flex-direction:column;">
           <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
             <div>
@@ -167,11 +179,6 @@ function renderCartDrawer() {
     const subtotal = getSubtotal();
     const savings  = getSavings();
     footer.innerHTML = `
-      <!-- "Você economiza" row in accent color — exactly like original -->
-      <div style="display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#38bdf8;margin-bottom:4px;">
-        <span>Você economiza</span>
-        <span style="font-weight:600;">${formatBRL(savings)}</span>
-      </div>
       <!-- Total row -->
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
         <span style="color:#8b949e;font-size:14px;">Total</span>
