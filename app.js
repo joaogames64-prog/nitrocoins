@@ -600,3 +600,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 });
+
+// ── BOTTOM CART BAR (mobile) ─────────────────────────────────────────────────
+function updateBottomBar() {
+  const bar       = document.getElementById('bottom-cart-bar');
+  const totalEl   = document.getElementById('bottom-cart-total');
+  const countEl   = document.getElementById('bottom-cart-count');
+  if (!bar) return;
+
+  const count = getCartCount();
+  const total = getCartTotal();
+
+  if (count > 0) {
+    bar.style.display = 'flex';
+    if (totalEl) totalEl.textContent = formatPrice(total);
+    if (countEl) {
+      countEl.textContent = count;
+      countEl.style.display = 'inline';
+    }
+  } else {
+    bar.style.display = 'none';
+  }
+}
+
+// Sobrescreve updateCartUI para incluir barra inferior
+const _origUpdateCartUI = updateCartUI;
+function updateCartUI() {
+  _origUpdateCartUI();
+  updateBottomBar();
+}
+
+// Garante que a barra começa oculta se carrinho vazio
+document.addEventListener('DOMContentLoaded', () => {
+  const bar = document.getElementById('bottom-cart-bar');
+  if (bar && getCartCount() === 0) bar.style.display = 'none';
+  updateBottomBar();
+});
