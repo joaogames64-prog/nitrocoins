@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#0d1117"/>
+  <title>Gemas - Brawl Stars | NitroCoins</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  
+</head>
+<body>
+<div class="noise-overlay"></div>
+<div class="page-wrapper">
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-link">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_12%20%281%29-IqyptOWQRX5iJMm9AjCdOhgsDiRBd4.png" alt="" class="logo-icon"/>
+        <span class="logo-text">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_16%20%282%29%20-%20Copia-g3RjalAowfZMTNGzUnBHXxp349PYQj.png" alt="Nitro" class="logo-nitro"/>
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%2010%20de%20set.%20de%202026%2C%2001_07_16%20%281%29%20-%20Copia-XxFriH3xGsAOPWWJXyFrYKkb5zEWzy.png" alt="Coins" class="logo-coins"/>
+        </span>
+      </a>
+      <nav class="desktop-nav">
+        <a href="index.html#catalogo" class="nav-link">Catalogo</a>
+        <a href="index.html#como-funciona" class="nav-link">Como funciona</a>
+        <a href="index.html#avaliacoes" class="nav-link">Avaliacoes</a>
+        <a href="index.html#faq" class="nav-link">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn-orders">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/></svg>
+          <span class="hide-mobile">Pedidos</span>
+        </button>
+        <button class="btn-cart" id="btn-cart" onclick="toggleCart()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span class="hide-mobile">Carrinho</span>
+          <span class="cart-badge" id="cart-badge" style="display:none">0</span>
+        </button>
+        <button class="btn-menu" id="btn-menu" onclick="toggleMobileNav()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-nav" class="mobile-nav" style="display:none">
+      <div class="mobile-nav-inner">
+        <a href="index.html#catalogo" class="mobile-nav-link" onclick="closeMobileNav()">Catalogo</a>
+        <a href="index.html#como-funciona" class="mobile-nav-link" onclick="closeMobileNav()">Como funciona</a>
+        <a href="index.html#avaliacoes" class="mobile-nav-link" onclick="closeMobileNav()">Avaliacoes</a>
+        <a href="index.html#faq" class="mobile-nav-link" onclick="closeMobileNav()">FAQ</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="product-page">
+      <a href="index.html" class="product-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+        Voltar ao inicio
+      </a>
+      <div class="product-header">
+        <p class="product-game-label">Brawl Stars</p>
+        <h1 class="product-title font-display">&#128142; Gemas</h1>
+        <p class="product-subtitle">Escolha o pacote ideal e receba na hora, direto na sua conta.</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card reveal" style="transition-delay:0ms">
+          
+          <div class="product-card-icon">&#128142;</div>
+          <div class="product-card-amount font-display">30 Gemas</div>
+          <div class="product-card-type">Gemas para Brawl Stars</div>
+          <div class="product-card-price font-display">R$ 10,99</div>
+          <p class="product-card-original">De R$ 19,99</p>
+          <span class="product-card-discount">-45%</span>
+          <button class="btn-add-cart" onclick="addToCart('brawl-stars-0','30 Gemas','Brawl Stars',10.99,'&#128142;')">
+            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='8' cy='21' r='1'/><circle cx='19' cy='21' r='1'/><path d='M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12'/></svg>
+            Adicionar ao carrinho
+          </button>
+        </div>
+        <div class="product-card reveal" style="transition-delay:60ms">
+          
+          <div class="product-card-icon">&#128142;</div>
+          <div class="product-card-amount font-display">80 Gemas</div>
+          <div class="product-card-type">Gemas para Brawl Stars</div>
+          <div class="product-card-price font-display">R$ 24,99</div>
+          <p class="product-card-original">De R$ 44,99</p>
+          <span class="product-card-discount">-44%</span>
+          <button class="btn-add-cart" onclick="addToCart('brawl-stars-1','80 Gemas','Brawl Stars',24.99,'&#128142;')">
+            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='8' cy='21' r='1'/><circle cx='19' cy='21' r='1'/><path d='M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12'/></svg>
+            Adicionar ao carrinho
+          </button>
+        </div>
+        <div class="product-card  product-card--popular reveal" style="transition-delay:120ms">
+          <span class="popular-badge">POPULAR</span>
+          <div class="product-card-icon">&#128142;</div>
+          <div class="product-card-amount font-display">170 Gemas</div>
+          <div class="product-card-type">Gemas para Brawl Stars</div>
+          <div class="product-card-price font-display">R$ 49,99</div>
+          <p class="product-card-original">De R$ 89,99</p>
+          <span class="product-card-discount">-44%</span>
+          <button class="btn-add-cart" onclick="addToCart('brawl-stars-2','170 Gemas','Brawl Stars',49.99,'&#128142;')">
+            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='8' cy='21' r='1'/><circle cx='19' cy='21' r='1'/><path d='M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12'/></svg>
+            Adicionar ao carrinho
+          </button>
+        </div>
+        <div class="product-card reveal" style="transition-delay:180ms">
+          
+          <div class="product-card-icon">&#128142;</div>
+          <div class="product-card-amount font-display">360 Gemas</div>
+          <div class="product-card-type">Gemas para Brawl Stars</div>
+          <div class="product-card-price font-display">R$ 94,99</div>
+          <p class="product-card-original">De R$ 179,99</p>
+          <span class="product-card-discount">-47%</span>
+          <button class="btn-add-cart" onclick="addToCart('brawl-stars-3','360 Gemas','Brawl Stars',94.99,'&#128142;')">
+            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='8' cy='21' r='1'/><circle cx='19' cy='21' r='1'/><path d='M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12'/></svg>
+            Adicionar ao carrinho
+          </button>
+        </div>
+        <div class="product-card reveal" style="transition-delay:240ms">
+          
+          <div class="product-card-icon">&#128142;</div>
+          <div class="product-card-amount font-display">950 Gemas</div>
+          <div class="product-card-type">Gemas para Brawl Stars</div>
+          <div class="product-card-price font-display">R$ 224,99</div>
+          <p class="product-card-original">De R$ 449,99</p>
+          <span class="product-card-discount">-50%</span>
+          <button class="btn-add-cart" onclick="addToCart('brawl-stars-4','950 Gemas','Brawl Stars',224.99,'&#128142;')">
+            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><circle cx='8' cy='21' r='1'/><circle cx='19' cy='21' r='1'/><path d='M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12'/></svg>
+            Adicionar ao carrinho
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-cols">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="footer-logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><circle cx="12" cy="12" r="4"/></svg></span>
+            <span class="footer-logo-text font-display">Nitro<span class="text-gradient">Coins</span></span>
+          </div>
+          <p class="footer-desc">A recarga de moedas virtuais mais rapida e barata do Brasil. Entrega instantanea e suporte 24/7.</p>
+          <a href="mailto:suporte@nitrocoins.store" class="footer-email">suporte@nitrocoins.store</a>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title font-display">Jogos</h4>
+          <ul class="footer-links">
+            <li><a href="roblox.html" class="footer-link">Robux - Roblox</a></li>
+            <li><a href="fortnite.html" class="footer-link">V-Bucks - Fortnite</a></li>
+            <li><a href="brawl-stars.html" class="footer-link">Gemas - Brawl Stars</a></li>
+            <li><a href="free-fire.html" class="footer-link">Diamantes - Free Fire</a></li>
+            <li><a href="valorant.html" class="footer-link">VP - Valorant</a></li>
+            <li><a href="minecraft.html" class="footer-link">Minecoins - Minecraft</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title font-display">Suporte</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#faq" class="footer-link">Perguntas frequentes</a></li>
+            <li><a href="mailto:suporte@nitrocoins.store" class="footer-link">Falar com suporte</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title font-display">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Politica de privacidade</a></li>
+            <li><a href="#" class="footer-link">Termos de uso</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">2026 NitroCoins. Todos os direitos reservados.</p>
+        <p class="footer-note">NitroCoins nao e afiliada a Roblox, Epic Games, Supercell, Garena, Riot Games ou Microsoft.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+  <div id="cart-overlay" class="cart-overlay" onclick="closeCart()" style="display:none"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    <div class="cart-header">
+      <h2 class="cart-title font-display">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+        Carrinho
+      </h2>
+      <button class="cart-close" onclick="closeCart()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div id="cart-body" class="cart-body">
+      <div id="cart-empty" class="cart-empty">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+        <p>Seu carrinho esta vazio</p>
+        <a href="index.html#catalogo" class="cart-catalog-link" onclick="closeCart()">Ver catalogo</a>
+      </div>
+      <div id="cart-items" class="cart-items" style="display:none"></div>
+    </div>
+    <div id="cart-footer" class="cart-footer" style="display:none">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total</span>
+        <span class="cart-total-value font-display" id="cart-total">R$ 0,00</span>
+      </div>
+      <button class="btn-checkout" onclick="checkout()">Finalizar compra <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+  </aside>
+  <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="whatsapp-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+  </a>
+  <script src="app.js"></script>
+</body>
+</html>
